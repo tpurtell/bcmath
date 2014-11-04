@@ -1,0 +1,288 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <ProjectType>Local</ProjectType>
+    <ProductVersion>7.10.3077</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{38872A5F-E87E-4FAD-B109-8EB7B3E6A4A0}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ApplicationIcon />
+    <AssemblyKeyContainerName />
+    <AssemblyName>bcec</AssemblyName>
+    <AssemblyOriginatorKeyFile />
+    <DefaultClientScript>JScript</DefaultClientScript>
+    <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
+    <DefaultTargetSchema>IE50</DefaultTargetSchema>
+    <DelaySign>false</DelaySign>
+    <OutputType>Library</OutputType>
+    <RootNamespace>crypto</RootNamespace>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <StartupObject />
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <TargetFrameworkProfile>Profile259</TargetFrameworkProfile>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>0.0</OldToolsVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile />
+    <DefineConstants>TRACE;DEBUG;INCLUDE_IDEA;NET_1_1;SILVERLIGHT</DefineConstants>
+    <DocumentationFile>doc\crypto.xml</DocumentationFile>
+    <DebugSymbols>true</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>1591</NoWarn>
+    <Optimize>false</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>full</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile />
+    <DefineConstants>TRACE;INCLUDE_IDEA;NET_1_1;SILVERLIGHT</DefineConstants>
+    <DocumentationFile>doc\crypto.xml</DocumentationFile>
+    <DebugSymbols>false</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>1591</NoWarn>
+    <Optimize>true</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>none</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="nunit.core">
+      <Name>nunit.core</Name>
+      <HintPath>test\lib\nunit.core.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.core.interfaces">
+      <Name>nunit.core.interfaces</Name>
+      <HintPath>test\lib\nunit.core.interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework">
+      <Name>nunit.framework</Name>
+      <HintPath>test\lib\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="System">
+      <Name>System</Name>
+    </Reference>
+    <Reference Include="System.Data">
+      <Name>System.Data</Name>
+    </Reference>
+    <Reference Include="System.Xml">
+      <Name>System.XML</Name>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="src\asn1\teletrust\TeleTrusTNamedCurves.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="src\asn1\x9\X9ECParameters.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="src\asn1\x9\X9ECParametersHolder.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="src\asn1\x9\X9IntegerConverter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="src\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="src\math\BigInteger.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="src\math\ec\abc\SimpleBigDecimal.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="src\math\ec\abc\Tnaf.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="src\math\ec\abc\ZTauElement.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="src\math\ec\ECAlgorithms.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="src\math\ec\ECCurve.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="src\math\ec\ECFieldElement.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="src\math\ec\ECPoint.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="src\math\ec\IntArray.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="src\math\ec\multiplier\ECMultiplier.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="src\math\ec\multiplier\FpNafMultiplier.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="src\math\ec\multiplier\PreCompInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="src\math\ec\multiplier\ReferenceMultiplier.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="src\math\ec\multiplier\WNafMultiplier.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="src\math\ec\multiplier\WNafPreCompInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="src\math\ec\multiplier\WTauNafMultiplier.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="src\math\ec\multiplier\WTauNafPreCompInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="src\util\Arrays.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="src\util\BigIntegers.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="src\util\collections\EmptyEnumerable.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="src\util\collections\EnumerableProxy.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="src\util\collections\HashSet.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="src\util\collections\ISet.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="src\util\collections\LinkedDictionary.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="src\util\collections\UnmodifiableDictionary.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="src\util\collections\UnmodifiableDictionaryProxy.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="src\util\collections\UnmodifiableList.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="src\util\collections\UnmodifiableListProxy.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="src\util\collections\UnmodifiableSet.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="src\util\collections\UnmodifiableSetProxy.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="src\util\date\DateTimeObject.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="src\util\date\DateTimeUtilities.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="src\util\encoders\Base64.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="src\util\encoders\Base64Encoder.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="src\util\encoders\BufferedDecoder.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="src\util\encoders\BufferedEncoder.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="src\util\encoders\Hex.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="src\util\encoders\HexEncoder.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="src\util\encoders\HexTranslator.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="src\util\encoders\IEncoder.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="src\util\encoders\Translator.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="src\util\encoders\UrlBase64.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="src\util\encoders\UrlBase64Encoder.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="src\util\io\pem\PemGenerationException.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="src\util\io\pem\PemHeader.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="src\util\io\pem\PemObject.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="src\util\io\pem\PemObjectGenerator.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="src\util\io\pem\PemObjectParser.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="src\util\io\pem\PemReader.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="src\util\io\pem\PemWriter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="src\util\io\StreamOverflowException.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="src\util\io\Streams.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="src\util\net\IPAddress.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="src\util\Platform.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="src\util\Strings.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Content Include="Contributors.html" />
+    <Content Include="License.html" />
+    <Content Include="Readme.html" />
+    <None Include="NBuild.build" />
+    <None Include="testcfg.nunit" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent />
+    <PostBuildEvent />
+  </PropertyGroup>
+</Project>

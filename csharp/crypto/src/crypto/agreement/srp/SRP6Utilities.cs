@@ -34,15 +34,6 @@ namespace Org.BouncyCastle.Crypto.Agreement.Srp
 	        return new BigInteger(1, output).Mod(N);
 	    }
 
-		public static BigInteger GeneratePrivateValue(IDigest digest, BigInteger N, BigInteger g, SecureRandom random)
-	    {
-			int minBits = System.Math.Min(256, N.BitLength / 2);
-	        BigInteger min = BigInteger.One.ShiftLeft(minBits - 1);
-	        BigInteger max = N.Subtract(BigInteger.One);
-
-	        return BigIntegers.CreateRandomInRange(min, max, random);
-	    }
-
 		public static BigInteger ValidatePublicValue(BigInteger N, BigInteger val)
 		{
 		    val = val.Mod(N);

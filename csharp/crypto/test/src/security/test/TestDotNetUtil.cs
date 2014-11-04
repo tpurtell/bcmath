@@ -1,4 +1,4 @@
-#if !NETCF_1_0
+#if !NETCF_1_0 && !SILVERLIGHT
 
 using System;
 using SystemX509 = System.Security.Cryptography.X509Certificates;

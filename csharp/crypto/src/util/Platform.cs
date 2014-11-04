@@ -36,7 +36,7 @@ namespace Org.BouncyCastle.Utilities
         internal static int CompareIgnoreCase(string a, string b)
         {
 #if SILVERLIGHT
-            return String.Compare(a, b, StringComparison.InvariantCultureIgnoreCase);
+            return String.Compare(a, b, StringComparison.OrdinalIgnoreCase);
 #else
             return String.Compare(a, b, true);
 #endif

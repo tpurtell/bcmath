@@ -16,7 +16,7 @@ namespace Org.BouncyCastle.Asn1.TeleTrust
 	*/
 	public class TeleTrusTNamedCurves
 	{
-		internal class BrainpoolP160r1Holder
+		public class BrainpoolP160r1Holder
 			: X9ECParametersHolder
 		{
 			private BrainpoolP160r1Holder() {}
@@ -38,7 +38,7 @@ namespace Org.BouncyCastle.Asn1.TeleTrust
 			}
 		}
 
-		internal class BrainpoolP160t1Holder
+		public class BrainpoolP160t1Holder
 			: X9ECParametersHolder
 		{
 			private BrainpoolP160t1Holder() {}
@@ -61,7 +61,7 @@ namespace Org.BouncyCastle.Asn1.TeleTrust
 			}
 		}
 
-		internal class BrainpoolP192r1Holder
+		public class BrainpoolP192r1Holder
 			: X9ECParametersHolder
 		{
 			private BrainpoolP192r1Holder() {}
@@ -83,7 +83,7 @@ namespace Org.BouncyCastle.Asn1.TeleTrust
 			}
 		}
 
-		internal class BrainpoolP192t1Holder
+		public class BrainpoolP192t1Holder
 			: X9ECParametersHolder
 		{
 			private BrainpoolP192t1Holder() {}
@@ -106,7 +106,7 @@ namespace Org.BouncyCastle.Asn1.TeleTrust
 			}
 		}
 
-		internal class BrainpoolP224r1Holder
+		public class BrainpoolP224r1Holder
 			: X9ECParametersHolder
 		{
 			private BrainpoolP224r1Holder() {}
@@ -128,7 +128,7 @@ namespace Org.BouncyCastle.Asn1.TeleTrust
 			}
 		}
 
-		internal class BrainpoolP224t1Holder
+		public class BrainpoolP224t1Holder
 			: X9ECParametersHolder
 		{
 			private BrainpoolP224t1Holder() {}
@@ -151,7 +151,7 @@ namespace Org.BouncyCastle.Asn1.TeleTrust
 			}
 		}
 
-		internal class BrainpoolP256r1Holder
+		public class BrainpoolP256r1Holder
 			: X9ECParametersHolder
 		{
 			private BrainpoolP256r1Holder() {}
@@ -173,7 +173,7 @@ namespace Org.BouncyCastle.Asn1.TeleTrust
 			}
 		}
 
-		internal class BrainpoolP256t1Holder
+		public class BrainpoolP256t1Holder
 			: X9ECParametersHolder
 		{
 			private BrainpoolP256t1Holder() {}
@@ -196,7 +196,7 @@ namespace Org.BouncyCastle.Asn1.TeleTrust
 			}
 		}
 
-		internal class BrainpoolP320r1Holder
+		public class BrainpoolP320r1Holder
 			: X9ECParametersHolder
 		{
 			private BrainpoolP320r1Holder() {}
@@ -218,7 +218,7 @@ namespace Org.BouncyCastle.Asn1.TeleTrust
 			}
 		}
 
-		internal class BrainpoolP320t1Holder
+		public class BrainpoolP320t1Holder
 			: X9ECParametersHolder
 		{
 			private BrainpoolP320t1Holder() {}
@@ -241,7 +241,7 @@ namespace Org.BouncyCastle.Asn1.TeleTrust
 			}
 		}
 
-		internal class BrainpoolP384r1Holder
+		public class BrainpoolP384r1Holder
 			: X9ECParametersHolder
 		{
 			private BrainpoolP384r1Holder() {}
@@ -263,7 +263,7 @@ namespace Org.BouncyCastle.Asn1.TeleTrust
 			}
 		}
 
-		internal class BrainpoolP384t1Holder
+		public class BrainpoolP384t1Holder
 			: X9ECParametersHolder
 		{
 			private BrainpoolP384t1Holder() {}
@@ -286,7 +286,7 @@ namespace Org.BouncyCastle.Asn1.TeleTrust
 			}
 		}
 
-		internal class BrainpoolP512r1Holder
+		public class BrainpoolP512r1Holder
 			: X9ECParametersHolder
 		{
 			private BrainpoolP512r1Holder() {}
@@ -308,7 +308,7 @@ namespace Org.BouncyCastle.Asn1.TeleTrust
 			}
 		}
 
-		internal class BrainpoolP512t1Holder
+		public class BrainpoolP512t1Holder
 			: X9ECParametersHolder
 		{
 			private BrainpoolP512t1Holder() {}
@@ -332,97 +332,5 @@ namespace Org.BouncyCastle.Asn1.TeleTrust
 		}
 
 
-		private static readonly IDictionary objIds = Platform.CreateHashtable();
-        private static readonly IDictionary curves = Platform.CreateHashtable();
-        private static readonly IDictionary names = Platform.CreateHashtable();
-
-		private static void DefineCurve(
-			string					name,
-			DerObjectIdentifier		oid,
-			X9ECParametersHolder	holder)
-		{
-			objIds.Add(name, oid);
-			names.Add(oid, name);
-			curves.Add(oid, holder);
-		}
-
-		static TeleTrusTNamedCurves()
-		{
-			DefineCurve("brainpoolp160r1", TeleTrusTObjectIdentifiers.BrainpoolP160R1, BrainpoolP160r1Holder.Instance);
-			DefineCurve("brainpoolp160t1", TeleTrusTObjectIdentifiers.BrainpoolP160T1, BrainpoolP160t1Holder.Instance);
-			DefineCurve("brainpoolp192r1", TeleTrusTObjectIdentifiers.BrainpoolP192R1, BrainpoolP192r1Holder.Instance);
-			DefineCurve("brainpoolp192t1", TeleTrusTObjectIdentifiers.BrainpoolP192T1, BrainpoolP192t1Holder.Instance);
-			DefineCurve("brainpoolp224r1", TeleTrusTObjectIdentifiers.BrainpoolP224R1, BrainpoolP224r1Holder.Instance);
-			DefineCurve("brainpoolp224t1", TeleTrusTObjectIdentifiers.BrainpoolP224T1, BrainpoolP224t1Holder.Instance);
-			DefineCurve("brainpoolp256r1", TeleTrusTObjectIdentifiers.BrainpoolP256R1, BrainpoolP256r1Holder.Instance);
-			DefineCurve("brainpoolp256t1", TeleTrusTObjectIdentifiers.BrainpoolP256T1, BrainpoolP256t1Holder.Instance);
-			DefineCurve("brainpoolp320r1", TeleTrusTObjectIdentifiers.BrainpoolP320R1, BrainpoolP320r1Holder.Instance);
-			DefineCurve("brainpoolp320t1", TeleTrusTObjectIdentifiers.BrainpoolP320T1, BrainpoolP320t1Holder.Instance);
-			DefineCurve("brainpoolp384r1", TeleTrusTObjectIdentifiers.BrainpoolP384R1, BrainpoolP384r1Holder.Instance);
-			DefineCurve("brainpoolp384t1", TeleTrusTObjectIdentifiers.BrainpoolP384T1, BrainpoolP384t1Holder.Instance);
-			DefineCurve("brainpoolp512r1", TeleTrusTObjectIdentifiers.BrainpoolP512R1, BrainpoolP512r1Holder.Instance);
-			DefineCurve("brainpoolp512t1", TeleTrusTObjectIdentifiers.BrainpoolP512T1, BrainpoolP512t1Holder.Instance);
-		}
-
-		public static X9ECParameters GetByName(
-			string name)
-		{
-			DerObjectIdentifier oid = (DerObjectIdentifier)
-				objIds[name.ToLower(CultureInfo.InvariantCulture)];
-
-			return oid == null ? null : GetByOid(oid);
-		}
-
-		/**
-		* return the X9ECParameters object for the named curve represented by
-		* the passed in object identifier. Null if the curve isn't present.
-		*
-		* @param oid an object identifier representing a named curve, if present.
-		*/
-		public static X9ECParameters GetByOid(
-			DerObjectIdentifier oid)
-		{
-			X9ECParametersHolder holder = (X9ECParametersHolder) curves[oid];
-
-			return holder == null ? null : holder.Parameters;
-		}
-
-		/**
-		* return the object identifier signified by the passed in name. Null
-		* if there is no object identifier associated with name.
-		*
-		* @return the object identifier associated with name, if present.
-		*/
-		public static DerObjectIdentifier GetOid(
-			string name)
-		{
-			return (DerObjectIdentifier) objIds[name.ToLower(CultureInfo.InvariantCulture)];
-		}
-
-		/**
-		* return the named curve name represented by the given object identifier.
-		*/
-		public static string GetName(
-			DerObjectIdentifier oid)
-		{
-			return (string) names[oid];
-		}
-
-
-		/**
-		 * returns an enumeration containing the name strings for curves
-		 * contained in this structure.
-		 */
-		public static IEnumerable Names
-		{
-			get { return new EnumerableProxy(objIds.Keys); }
-		}
-
-		public static DerObjectIdentifier GetOid(
-			short	curvesize,
-			bool	twisted)
-		{
-			return GetOid("brainpoolP" + curvesize + (twisted ? "t" : "r") + "1");
-		}
 	}
 }
