@@ -21,7 +21,7 @@ namespace Org.BouncyCastle.Asn1.TeleTrust
 		{
 			private BrainpoolP160r1Holder() {}
 
-			internal static readonly X9ECParametersHolder Instance = new BrainpoolP160r1Holder();
+			public static readonly X9ECParametersHolder Instance = new BrainpoolP160r1Holder();
 
 			protected override X9ECParameters CreateParameters()
 			{
@@ -43,7 +43,7 @@ namespace Org.BouncyCastle.Asn1.TeleTrust
 		{
 			private BrainpoolP160t1Holder() {}
 
-			internal static readonly X9ECParametersHolder Instance = new BrainpoolP160t1Holder();
+			public static readonly X9ECParametersHolder Instance = new BrainpoolP160t1Holder();
 
 			protected override X9ECParameters CreateParameters()
 			{
@@ -66,7 +66,7 @@ namespace Org.BouncyCastle.Asn1.TeleTrust
 		{
 			private BrainpoolP192r1Holder() {}
 
-			internal static readonly X9ECParametersHolder Instance = new BrainpoolP192r1Holder();
+			public static readonly X9ECParametersHolder Instance = new BrainpoolP192r1Holder();
 
 			protected override X9ECParameters CreateParameters()
 			{
@@ -88,7 +88,7 @@ namespace Org.BouncyCastle.Asn1.TeleTrust
 		{
 			private BrainpoolP192t1Holder() {}
 
-			internal static readonly X9ECParametersHolder Instance = new BrainpoolP192t1Holder();
+			public static readonly X9ECParametersHolder Instance = new BrainpoolP192t1Holder();
 
 			protected override X9ECParameters CreateParameters()
 			{
@@ -111,7 +111,7 @@ namespace Org.BouncyCastle.Asn1.TeleTrust
 		{
 			private BrainpoolP224r1Holder() {}
 
-			internal static readonly X9ECParametersHolder Instance = new BrainpoolP224r1Holder();
+			public static readonly X9ECParametersHolder Instance = new BrainpoolP224r1Holder();
 
 			protected override X9ECParameters CreateParameters()
 			{
@@ -133,7 +133,7 @@ namespace Org.BouncyCastle.Asn1.TeleTrust
 		{
 			private BrainpoolP224t1Holder() {}
 
-			internal static readonly X9ECParametersHolder Instance = new BrainpoolP224t1Holder();
+			public static readonly X9ECParametersHolder Instance = new BrainpoolP224t1Holder();
 
 			protected override X9ECParameters CreateParameters()
 			{
@@ -156,7 +156,7 @@ namespace Org.BouncyCastle.Asn1.TeleTrust
 		{
 			private BrainpoolP256r1Holder() {}
 
-			internal static readonly X9ECParametersHolder Instance = new BrainpoolP256r1Holder();
+			public static readonly X9ECParametersHolder Instance = new BrainpoolP256r1Holder();
 
 			protected override X9ECParameters CreateParameters()
 			{
@@ -178,7 +178,7 @@ namespace Org.BouncyCastle.Asn1.TeleTrust
 		{
 			private BrainpoolP256t1Holder() {}
 
-			internal static readonly X9ECParametersHolder Instance = new BrainpoolP256t1Holder();
+			public static readonly X9ECParametersHolder Instance = new BrainpoolP256t1Holder();
 
 			protected override X9ECParameters CreateParameters()
 			{
@@ -201,7 +201,7 @@ namespace Org.BouncyCastle.Asn1.TeleTrust
 		{
 			private BrainpoolP320r1Holder() {}
 
-			internal static readonly X9ECParametersHolder Instance = new BrainpoolP320r1Holder();
+			public static readonly X9ECParametersHolder Instance = new BrainpoolP320r1Holder();
 
 			protected override X9ECParameters CreateParameters()
 			{
@@ -223,7 +223,7 @@ namespace Org.BouncyCastle.Asn1.TeleTrust
 		{
 			private BrainpoolP320t1Holder() {}
 
-			internal static readonly X9ECParametersHolder Instance = new BrainpoolP320t1Holder();
+			public static readonly X9ECParametersHolder Instance = new BrainpoolP320t1Holder();
 
 			protected override X9ECParameters CreateParameters()
 			{
@@ -246,7 +246,7 @@ namespace Org.BouncyCastle.Asn1.TeleTrust
 		{
 			private BrainpoolP384r1Holder() {}
 
-			internal static readonly X9ECParametersHolder Instance = new BrainpoolP384r1Holder();
+			public static readonly X9ECParametersHolder Instance = new BrainpoolP384r1Holder();
 
 			protected override X9ECParameters CreateParameters()
 			{
@@ -268,7 +268,7 @@ namespace Org.BouncyCastle.Asn1.TeleTrust
 		{
 			private BrainpoolP384t1Holder() {}
 
-			internal static readonly X9ECParametersHolder Instance = new BrainpoolP384t1Holder();
+			public static readonly X9ECParametersHolder Instance = new BrainpoolP384t1Holder();
 
 			protected override X9ECParameters CreateParameters()
 			{
@@ -291,7 +291,7 @@ namespace Org.BouncyCastle.Asn1.TeleTrust
 		{
 			private BrainpoolP512r1Holder() {}
 
-			internal static readonly X9ECParametersHolder Instance = new BrainpoolP512r1Holder();
+			public static readonly X9ECParametersHolder Instance = new BrainpoolP512r1Holder();
 
 			protected override X9ECParameters CreateParameters()
 			{
@@ -313,7 +313,7 @@ namespace Org.BouncyCastle.Asn1.TeleTrust
 		{
 			private BrainpoolP512t1Holder() {}
 
-			internal static readonly X9ECParametersHolder Instance = new BrainpoolP512t1Holder();
+			public static readonly X9ECParametersHolder Instance = new BrainpoolP512t1Holder();
 
 			protected override X9ECParameters CreateParameters()
 			{
