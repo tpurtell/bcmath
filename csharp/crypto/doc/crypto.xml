@@ -12,6 +12,166 @@
             ASN.1 def for Elliptic-Curve ECParameters structure. See
             X9.62, for further details.
         </member>
+        <member name="T:Org.BouncyCastle.Crypto.Digests.GeneralDigest">
+            base implementation of MD4 family style digest as outlined in
+            "Handbook of Applied Cryptography", pages 344 - 347.
+        </member>
+        <member name="T:Org.BouncyCastle.Crypto.IDigest">
+            interface that a message digest conforms to.
+        </member>
+        <member name="M:Org.BouncyCastle.Crypto.IDigest.GetDigestSize">
+             return the size, in bytes, of the digest produced by this message digest.
+            
+             @return the size, in bytes, of the digest produced by this message digest.
+        </member>
+        <member name="M:Org.BouncyCastle.Crypto.IDigest.GetByteLength">
+             return the size, in bytes, of the internal buffer used by this digest.
+            
+             @return the size, in bytes, of the internal buffer used by this digest.
+        </member>
+        <member name="M:Org.BouncyCastle.Crypto.IDigest.Update(System.Byte)">
+             update the message digest with a single byte.
+            
+             @param inByte the input byte to be entered.
+        </member>
+        <member name="M:Org.BouncyCastle.Crypto.IDigest.BlockUpdate(System.Byte[],System.Int32,System.Int32)">
+             update the message digest with a block of bytes.
+            
+             @param input the byte array containing the data.
+             @param inOff the offset into the byte array where the data starts.
+             @param len the length of the data.
+        </member>
+        <member name="M:Org.BouncyCastle.Crypto.IDigest.DoFinal(System.Byte[],System.Int32)">
+             Close the digest, producing the final digest value. The doFinal
+             call leaves the digest reset.
+            
+             @param output the array the digest is to be copied into.
+             @param outOff the offset into the out array the digest is to start at.
+        </member>
+        <member name="M:Org.BouncyCastle.Crypto.IDigest.Reset">
+            reset the digest back to it's initial state.
+        </member>
+        <member name="P:Org.BouncyCastle.Crypto.IDigest.AlgorithmName">
+             return the algorithm name
+            
+             @return the algorithm name
+        </member>
+        <member name="T:Org.BouncyCastle.Crypto.Digests.LongDigest">
+            Base class for SHA-384 and SHA-512.
+        </member>
+        <member name="M:Org.BouncyCastle.Crypto.Digests.LongDigest.#ctor">
+            Constructor for variable length word
+        </member>
+        <member name="M:Org.BouncyCastle.Crypto.Digests.LongDigest.#ctor(Org.BouncyCastle.Crypto.Digests.LongDigest)">
+            Copy constructor.  We are using copy constructors in place
+            of the object.Clone() interface as this interface is not
+            supported by J2ME.
+        </member>
+        <member name="M:Org.BouncyCastle.Crypto.Digests.LongDigest.AdjustByteCounts">
+            adjust the byte counts so that byteCount2 represents the
+            upper long (less 3 bits) word of the byte count.
+        </member>
+        <member name="T:Org.BouncyCastle.Crypto.Digests.MD5Digest">
+            implementation of MD5 as outlined in "Handbook of Applied Cryptography", pages 346 - 347.
+        </member>
+        <member name="M:Org.BouncyCastle.Crypto.Digests.MD5Digest.#ctor(Org.BouncyCastle.Crypto.Digests.MD5Digest)">
+            Copy constructor.  This will copy the state of the provided
+            message digest.
+        </member>
+        <member name="M:Org.BouncyCastle.Crypto.Digests.MD5Digest.Reset">
+            reset the chaining variables to the IV values.
+        </member>
+        <member name="T:Org.BouncyCastle.Crypto.Digests.Sha1Digest">
+             implementation of SHA-1 as outlined in "Handbook of Applied Cryptography", pages 346 - 349.
+            
+             It is interesting to ponder why the, apart from the extra IV, the other difference here from MD5
+             is the "endienness" of the word processing!
+        </member>
+        <member name="M:Org.BouncyCastle.Crypto.Digests.Sha1Digest.#ctor(Org.BouncyCastle.Crypto.Digests.Sha1Digest)">
+            Copy constructor.  This will copy the state of the provided
+            message digest.
+        </member>
+        <member name="M:Org.BouncyCastle.Crypto.Digests.Sha1Digest.Reset">
+            reset the chaining variables
+        </member>
+        <member name="T:Org.BouncyCastle.Crypto.Digests.Sha224Digest">
+            SHA-224 as described in RFC 3874
+            <pre>
+                    block  word  digest
+            SHA-1   512    32    160
+            SHA-224 512    32    224
+            SHA-256 512    32    256
+            SHA-384 1024   64    384
+            SHA-512 1024   64    512
+            </pre>
+        </member>
+        <member name="M:Org.BouncyCastle.Crypto.Digests.Sha224Digest.#ctor">
+            Standard constructor
+        </member>
+        <member name="M:Org.BouncyCastle.Crypto.Digests.Sha224Digest.#ctor(Org.BouncyCastle.Crypto.Digests.Sha224Digest)">
+            Copy constructor.  This will copy the state of the provided
+            message digest.
+        </member>
+        <member name="M:Org.BouncyCastle.Crypto.Digests.Sha224Digest.Reset">
+            reset the chaining variables
+        </member>
+        <member name="T:Org.BouncyCastle.Crypto.Digests.Sha256Digest">
+             Draft FIPS 180-2 implementation of SHA-256. <b>Note:</b> As this is
+             based on a draft this implementation is subject to change.
+            
+             <pre>
+                     block  word  digest
+             SHA-1   512    32    160
+             SHA-256 512    32    256
+             SHA-384 1024   64    384
+             SHA-512 1024   64    512
+             </pre>
+        </member>
+        <member name="M:Org.BouncyCastle.Crypto.Digests.Sha256Digest.#ctor(Org.BouncyCastle.Crypto.Digests.Sha256Digest)">
+            Copy constructor.  This will copy the state of the provided
+            message digest.
+        </member>
+        <member name="M:Org.BouncyCastle.Crypto.Digests.Sha256Digest.Reset">
+            reset the chaining variables
+        </member>
+        <member name="T:Org.BouncyCastle.Crypto.Digests.Sha384Digest">
+             Draft FIPS 180-2 implementation of SHA-384. <b>Note:</b> As this is
+             based on a draft this implementation is subject to change.
+            
+             <pre>
+                     block  word  digest
+             SHA-1   512    32    160
+             SHA-256 512    32    256
+             SHA-384 1024   64    384
+             SHA-512 1024   64    512
+             </pre>
+        </member>
+        <member name="M:Org.BouncyCastle.Crypto.Digests.Sha384Digest.#ctor(Org.BouncyCastle.Crypto.Digests.Sha384Digest)">
+            Copy constructor.  This will copy the state of the provided
+            message digest.
+        </member>
+        <member name="M:Org.BouncyCastle.Crypto.Digests.Sha384Digest.Reset">
+            reset the chaining variables
+        </member>
+        <member name="T:Org.BouncyCastle.Crypto.Digests.Sha512Digest">
+             Draft FIPS 180-2 implementation of SHA-512. <b>Note:</b> As this is
+             based on a draft this implementation is subject to change.
+            
+             <pre>
+                     block  word  digest
+             SHA-1   512    32    160
+             SHA-256 512    32    256
+             SHA-384 1024   64    384
+             SHA-512 1024   64    512
+             </pre>
+        </member>
+        <member name="M:Org.BouncyCastle.Crypto.Digests.Sha512Digest.#ctor(Org.BouncyCastle.Crypto.Digests.Sha512Digest)">
+            Copy constructor.  This will copy the state of the provided
+            message digest.
+        </member>
+        <member name="M:Org.BouncyCastle.Crypto.Digests.Sha512Digest.Reset">
+            reset the chaining variables
+        </member>
         <member name="M:Org.BouncyCastle.Math.BigInteger.AddMagnitudes(System.Int32[],System.Int32[])">
             return a = a + b - b preserved.
         </member>

@@ -110,7 +110,15 @@
     </Compile>
     <Compile Include="src\crypto\ec\CustomNamedCurves.cs" />
     <Compile Include="src\crypto\util\Pack.cs" />
-    <Compile Include="src\math\BigInteger.cs">
+    <Compile Include="src\crypto\digests\GeneralDigest.cs" />
+    <Compile Include="src\crypto\digests\LongDigest.cs" />
+    <Compile Include="src\crypto\digests\MD5Digest.cs" />
+    <Compile Include="src\crypto\digests\Sha1Digest.cs" />
+    <Compile Include="src\crypto\digests\Sha224Digest.cs" />
+    <Compile Include="src\crypto\digests\Sha256Digest.cs" />
+    <Compile Include="src\crypto\digests\Sha384Digest.cs" />
+    <Compile Include="src\crypto\digests\Sha512Digest.cs" />
+    <Compile Include="src\crypto\IDigest.cs" />    <Compile Include="src\math\BigInteger.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="src\math\ec\abc\SimpleBigDecimal.cs">

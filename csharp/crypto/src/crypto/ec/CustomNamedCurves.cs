@@ -46,7 +46,7 @@ namespace Org.BouncyCastle.Crypto.EC
             {
             }
 
-            internal static readonly X9ECParametersHolder Instance = new Curve25519Holder();
+            public static readonly X9ECParametersHolder Instance = new Curve25519Holder();
 
             protected override X9ECParameters CreateParameters()
             {
