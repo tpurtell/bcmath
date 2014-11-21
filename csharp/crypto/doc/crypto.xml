@@ -1,0 +1,1596 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>bcec</name>
+    </assembly>
+    <members>
+        <member name="T:Org.BouncyCastle.Asn1.TeleTrust.TeleTrusTNamedCurves">
+            elliptic curves defined in "ECC Brainpool Standard Curves and Curve Generation"
+            http://www.ecc-brainpool.org/download/draft_pkix_additional_ecc_dp.txt
+        </member>
+        <member name="T:Org.BouncyCastle.Asn1.X9.X9ECParameters">
+            ASN.1 def for Elliptic-Curve ECParameters structure. See
+            X9.62, for further details.
+        </member>
+        <member name="M:Org.BouncyCastle.Math.BigInteger.AddMagnitudes(System.Int32[],System.Int32[])">
+            return a = a + b - b preserved.
+        </member>
+        <member name="M:Org.BouncyCastle.Math.BigInteger.CompareTo(System.Int32,System.Int32[],System.Int32,System.Int32[])">
+            unsigned comparison on two arrays - note the arrays may
+            start with leading zeros.
+        </member>
+        <member name="M:Org.BouncyCastle.Math.BigInteger.Divide(System.Int32[],System.Int32[])">
+            return z = x / y - done in place (z value preserved, x contains the
+            remainder)
+        </member>
+        <member name="M:Org.BouncyCastle.Math.BigInteger.IsProbablePrime(System.Int32)">
+            return whether or not a BigInteger is probably prime with a
+            probability of 1 - (1/2)**certainty.
+            <p>From Knuth Vol 2, pg 395.</p>
+        </member>
+        <member name="M:Org.BouncyCastle.Math.BigInteger.ExtEuclid(Org.BouncyCastle.Math.BigInteger,Org.BouncyCastle.Math.BigInteger,Org.BouncyCastle.Math.BigInteger@)">
+             Calculate the numbers u1, u2, and u3 such that:
+            
+             u1 * a + u2 * b = u3
+            
+             where u3 is the greatest common divider of a and b.
+             a and b using the extended Euclid algorithm (refer p. 323
+             of The Art of Computer Programming vol 2, 2nd ed).
+             This also seems to have the side effect of calculating
+             some form of multiplicative inverse.
+            
+             @param a    First number to calculate gcd for
+             @param b    Second number to calculate gcd for
+             @param u1Out      the return object for the u1 value
+             @return     The greatest common divisor of a and b
+        </member>
+        <member name="M:Org.BouncyCastle.Math.BigInteger.Square(System.Int32[],System.Int32[])">
+            return w with w = x * x - w is assumed to have enough space.
+        </member>
+        <member name="M:Org.BouncyCastle.Math.BigInteger.Multiply(System.Int32[],System.Int32[],System.Int32[])">
+            return x with x = y * z - x is assumed to have enough space.
+        </member>
+        <member name="M:Org.BouncyCastle.Math.BigInteger.GetMQuote">
+            Calculate mQuote = -m^(-1) mod b with b = 2^32 (32 = word size)
+        </member>
+        <member name="M:Org.BouncyCastle.Math.BigInteger.MultiplyMonty(System.Int32[],System.Int32[],System.Int32[],System.Int32[],System.UInt32,System.Boolean)">
+            Montgomery multiplication: a = x * y * R^(-1) mod m
+            <br/>
+            Based algorithm 14.36 of Handbook of Applied Cryptography.
+            <br/>
+            <li> m, x, y should have length n </li>
+            <li> a should have length (n + 1) </li>
+            <li> b = 2^32, R = b^n </li>
+            <br/>
+            The result is put in x
+            <br/>
+            NOTE: the indices of x, y, m, a different in HAC and in Java
+        </member>
+        <member name="M:Org.BouncyCastle.Math.BigInteger.Remainder(System.Int32[],System.Int32[])">
+            return x = x % y - done in place (y value preserved)
+        </member>
+        <member name="M:Org.BouncyCastle.Math.BigInteger.ShiftLeft(System.Int32[],System.Int32)">
+            do a left shift - this returns a new array.
+        </member>
+        <member name="M:Org.BouncyCastle.Math.BigInteger.ShiftRightInPlace(System.Int32,System.Int32[],System.Int32)">
+            do a right shift - this does it in place.
+        </member>
+        <member name="M:Org.BouncyCastle.Math.BigInteger.ShiftRightOneInPlace(System.Int32,System.Int32[])">
+            do a right shift by one - this does it in place.
+        </member>
+        <member name="M:Org.BouncyCastle.Math.BigInteger.Subtract(System.Int32,System.Int32[],System.Int32,System.Int32[])">
+            returns x = x - y - we assume x is >= y
+        </member>
+        <member name="T:Org.BouncyCastle.Math.EC.Abc.SimpleBigDecimal">
+            Class representing a simple version of a big decimal. A
+            <code>SimpleBigDecimal</code> is basically a
+            {@link java.math.BigInteger BigInteger} with a few digits on the right of
+            the decimal point. The number of (binary) digits on the right of the decimal
+            point is called the <code>scale</code> of the <code>SimpleBigDecimal</code>.
+            Unlike in {@link java.math.BigDecimal BigDecimal}, the scale is not adjusted
+            automatically, but must be set manually. All <code>SimpleBigDecimal</code>s
+            taking part in the same arithmetic operation must have equal scale. The
+            result of a multiplication of two <code>SimpleBigDecimal</code>s returns a
+            <code>SimpleBigDecimal</code> with double scale.
+        </member>
+        <member name="M:Org.BouncyCastle.Math.EC.Abc.SimpleBigDecimal.GetInstance(Org.BouncyCastle.Math.BigInteger,System.Int32)">
+            Returns a <code>SimpleBigDecimal</code> representing the same numerical
+            value as <code>value</code>.
+            @param value The value of the <code>SimpleBigDecimal</code> to be
+            created. 
+            @param scale The scale of the <code>SimpleBigDecimal</code> to be
+            created. 
+            @return The such created <code>SimpleBigDecimal</code>.
+        </member>
+        <member name="M:Org.BouncyCastle.Math.EC.Abc.SimpleBigDecimal.#ctor(Org.BouncyCastle.Math.BigInteger,System.Int32)">
+            Constructor for <code>SimpleBigDecimal</code>. The value of the
+            constructed <code>SimpleBigDecimal</code> Equals <code>bigInt / 
+            2<sup>scale</sup></code>.
+            @param bigInt The <code>bigInt</code> value parameter.
+            @param scale The scale of the constructed <code>SimpleBigDecimal</code>.
+        </member>
+        <member name="T:Org.BouncyCastle.Math.EC.Abc.Tnaf">
+            Class holding methods for point multiplication based on the window
+            &#964;-adic nonadjacent form (WTNAF). The algorithms are based on the
+            paper "Improved Algorithms for Arithmetic on Anomalous Binary Curves"
+            by Jerome A. Solinas. The paper first appeared in the Proceedings of
+            Crypto 1997.
+        </member>
+        <member name="F:Org.BouncyCastle.Math.EC.Abc.Tnaf.Width">
+            The window width of WTNAF. The standard value of 4 is slightly less
+            than optimal for running time, but keeps space requirements for
+            precomputation low. For typical curves, a value of 5 or 6 results in
+            a better running time. When changing this value, the
+            <code>&#945;<sub>u</sub></code>'s must be computed differently, see
+            e.g. "Guide to Elliptic Curve Cryptography", Darrel Hankerson,
+            Alfred Menezes, Scott Vanstone, Springer-Verlag New York Inc., 2004,
+            p. 121-122
+        </member>
+        <member name="F:Org.BouncyCastle.Math.EC.Abc.Tnaf.Pow2Width">
+            2<sup>4</sup>
+        </member>
+        <member name="F:Org.BouncyCastle.Math.EC.Abc.Tnaf.Alpha0">
+            The <code>&#945;<sub>u</sub></code>'s for <code>a=0</code> as an array
+            of <code>ZTauElement</code>s.
+        </member>
+        <member name="F:Org.BouncyCastle.Math.EC.Abc.Tnaf.Alpha0Tnaf">
+            The <code>&#945;<sub>u</sub></code>'s for <code>a=0</code> as an array
+            of TNAFs.
+        </member>
+        <member name="F:Org.BouncyCastle.Math.EC.Abc.Tnaf.Alpha1">
+            The <code>&#945;<sub>u</sub></code>'s for <code>a=1</code> as an array
+            of <code>ZTauElement</code>s.
+        </member>
+        <member name="F:Org.BouncyCastle.Math.EC.Abc.Tnaf.Alpha1Tnaf">
+            The <code>&#945;<sub>u</sub></code>'s for <code>a=1</code> as an array
+            of TNAFs.
+        </member>
+        <member name="M:Org.BouncyCastle.Math.EC.Abc.Tnaf.Norm(System.SByte,Org.BouncyCastle.Math.EC.Abc.ZTauElement)">
+            Computes the norm of an element <code>&#955;</code> of
+            <code><b>Z</b>[&#964;]</code>.
+            @param mu The parameter <code>&#956;</code> of the elliptic curve.
+            @param lambda The element <code>&#955;</code> of
+            <code><b>Z</b>[&#964;]</code>.
+            @return The norm of <code>&#955;</code>.
+        </member>
+        <member name="M:Org.BouncyCastle.Math.EC.Abc.Tnaf.Norm(System.SByte,Org.BouncyCastle.Math.EC.Abc.SimpleBigDecimal,Org.BouncyCastle.Math.EC.Abc.SimpleBigDecimal)">
+            Computes the norm of an element <code>&#955;</code> of
+            <code><b>R</b>[&#964;]</code>, where <code>&#955; = u + v&#964;</code>
+            and <code>u</code> and <code>u</code> are real numbers (elements of
+            <code><b>R</b></code>). 
+            @param mu The parameter <code>&#956;</code> of the elliptic curve.
+            @param u The real part of the element <code>&#955;</code> of
+            <code><b>R</b>[&#964;]</code>.
+            @param v The <code>&#964;</code>-adic part of the element
+            <code>&#955;</code> of <code><b>R</b>[&#964;]</code>.
+            @return The norm of <code>&#955;</code>.
+        </member>
+        <member name="M:Org.BouncyCastle.Math.EC.Abc.Tnaf.Round(Org.BouncyCastle.Math.EC.Abc.SimpleBigDecimal,Org.BouncyCastle.Math.EC.Abc.SimpleBigDecimal,System.SByte)">
+            Rounds an element <code>&#955;</code> of <code><b>R</b>[&#964;]</code>
+            to an element of <code><b>Z</b>[&#964;]</code>, such that their difference
+            has minimal norm. <code>&#955;</code> is given as
+            <code>&#955; = &#955;<sub>0</sub> + &#955;<sub>1</sub>&#964;</code>.
+            @param lambda0 The component <code>&#955;<sub>0</sub></code>.
+            @param lambda1 The component <code>&#955;<sub>1</sub></code>.
+            @param mu The parameter <code>&#956;</code> of the elliptic curve. Must
+            equal 1 or -1.
+            @return The rounded element of <code><b>Z</b>[&#964;]</code>.
+            @throws ArgumentException if <code>lambda0</code> and
+            <code>lambda1</code> do not have same scale.
+        </member>
+        <member name="M:Org.BouncyCastle.Math.EC.Abc.Tnaf.ApproximateDivisionByN(Org.BouncyCastle.Math.BigInteger,Org.BouncyCastle.Math.BigInteger,Org.BouncyCastle.Math.BigInteger,System.SByte,System.Int32,System.Int32)">
+            Approximate division by <code>n</code>. For an integer
+            <code>k</code>, the value <code>&#955; = s k / n</code> is
+            computed to <code>c</code> bits of accuracy.
+            @param k The parameter <code>k</code>.
+            @param s The curve parameter <code>s<sub>0</sub></code> or
+            <code>s<sub>1</sub></code>.
+            @param vm The Lucas Sequence element <code>V<sub>m</sub></code>.
+            @param a The parameter <code>a</code> of the elliptic curve.
+            @param m The bit length of the finite field
+            <code><b>F</b><sub>m</sub></code>.
+            @param c The number of bits of accuracy, i.e. the scale of the returned
+            <code>SimpleBigDecimal</code>.
+            @return The value <code>&#955; = s k / n</code> computed to
+            <code>c</code> bits of accuracy.
+        </member>
+        <member name="M:Org.BouncyCastle.Math.EC.Abc.Tnaf.TauAdicNaf(System.SByte,Org.BouncyCastle.Math.EC.Abc.ZTauElement)">
+            Computes the <code>&#964;</code>-adic NAF (non-adjacent form) of an
+            element <code>&#955;</code> of <code><b>Z</b>[&#964;]</code>.
+            @param mu The parameter <code>&#956;</code> of the elliptic curve.
+            @param lambda The element <code>&#955;</code> of
+            <code><b>Z</b>[&#964;]</code>.
+            @return The <code>&#964;</code>-adic NAF of <code>&#955;</code>.
+        </member>
+        <member name="M:Org.BouncyCastle.Math.EC.Abc.Tnaf.Tau(Org.BouncyCastle.Math.EC.F2mPoint)">
+            Applies the operation <code>&#964;()</code> to an
+            <code>F2mPoint</code>. 
+            @param p The F2mPoint to which <code>&#964;()</code> is applied.
+            @return <code>&#964;(p)</code>
+        </member>
+        <member name="M:Org.BouncyCastle.Math.EC.Abc.Tnaf.GetMu(Org.BouncyCastle.Math.EC.F2mCurve)">
+            Returns the parameter <code>&#956;</code> of the elliptic curve.
+            @param curve The elliptic curve from which to obtain <code>&#956;</code>.
+            The curve must be a Koblitz curve, i.e. <code>a</code> Equals
+            <code>0</code> or <code>1</code> and <code>b</code> Equals
+            <code>1</code>. 
+            @return <code>&#956;</code> of the elliptic curve.
+            @throws ArgumentException if the given ECCurve is not a Koblitz
+            curve.
+        </member>
+        <member name="M:Org.BouncyCastle.Math.EC.Abc.Tnaf.GetLucas(System.SByte,System.Int32,System.Boolean)">
+            Calculates the Lucas Sequence elements <code>U<sub>k-1</sub></code> and
+            <code>U<sub>k</sub></code> or <code>V<sub>k-1</sub></code> and
+            <code>V<sub>k</sub></code>.
+            @param mu The parameter <code>&#956;</code> of the elliptic curve.
+            @param k The index of the second element of the Lucas Sequence to be
+            returned.
+            @param doV If set to true, computes <code>V<sub>k-1</sub></code> and
+            <code>V<sub>k</sub></code>, otherwise <code>U<sub>k-1</sub></code> and
+            <code>U<sub>k</sub></code>.
+            @return An array with 2 elements, containing <code>U<sub>k-1</sub></code>
+            and <code>U<sub>k</sub></code> or <code>V<sub>k-1</sub></code>
+            and <code>V<sub>k</sub></code>.
+        </member>
+        <member name="M:Org.BouncyCastle.Math.EC.Abc.Tnaf.GetTw(System.SByte,System.Int32)">
+            Computes the auxiliary value <code>t<sub>w</sub></code>. If the width is
+            4, then for <code>mu = 1</code>, <code>t<sub>w</sub> = 6</code> and for
+            <code>mu = -1</code>, <code>t<sub>w</sub> = 10</code> 
+            @param mu The parameter <code>&#956;</code> of the elliptic curve.
+            @param w The window width of the WTNAF.
+            @return the auxiliary value <code>t<sub>w</sub></code>
+        </member>
+        <member name="M:Org.BouncyCastle.Math.EC.Abc.Tnaf.GetSi(Org.BouncyCastle.Math.EC.F2mCurve)">
+            Computes the auxiliary values <code>s<sub>0</sub></code> and
+            <code>s<sub>1</sub></code> used for partial modular reduction. 
+            @param curve The elliptic curve for which to compute
+            <code>s<sub>0</sub></code> and <code>s<sub>1</sub></code>.
+            @throws ArgumentException if <code>curve</code> is not a
+            Koblitz curve (Anomalous Binary Curve, ABC).
+        </member>
+        <member name="M:Org.BouncyCastle.Math.EC.Abc.Tnaf.PartModReduction(Org.BouncyCastle.Math.BigInteger,System.Int32,System.SByte,Org.BouncyCastle.Math.BigInteger[],System.SByte,System.SByte)">
+            Partial modular reduction modulo
+            <code>(&#964;<sup>m</sup> - 1)/(&#964; - 1)</code>.
+            @param k The integer to be reduced.
+            @param m The bitlength of the underlying finite field.
+            @param a The parameter <code>a</code> of the elliptic curve.
+            @param s The auxiliary values <code>s<sub>0</sub></code> and
+            <code>s<sub>1</sub></code>.
+            @param mu The parameter &#956; of the elliptic curve.
+            @param c The precision (number of bits of accuracy) of the partial
+            modular reduction.
+            @return <code>&#961; := k partmod (&#964;<sup>m</sup> - 1)/(&#964; - 1)</code>
+        </member>
+        <member name="M:Org.BouncyCastle.Math.EC.Abc.Tnaf.MultiplyRTnaf(Org.BouncyCastle.Math.EC.F2mPoint,Org.BouncyCastle.Math.BigInteger)">
+            Multiplies a {@link org.bouncycastle.math.ec.F2mPoint F2mPoint}
+            by a <code>BigInteger</code> using the reduced <code>&#964;</code>-adic
+            NAF (RTNAF) method.
+            @param p The F2mPoint to Multiply.
+            @param k The <code>BigInteger</code> by which to Multiply <code>p</code>.
+            @return <code>k * p</code>
+        </member>
+        <member name="M:Org.BouncyCastle.Math.EC.Abc.Tnaf.MultiplyTnaf(Org.BouncyCastle.Math.EC.F2mPoint,Org.BouncyCastle.Math.EC.Abc.ZTauElement)">
+            Multiplies a {@link org.bouncycastle.math.ec.F2mPoint F2mPoint}
+            by an element <code>&#955;</code> of <code><b>Z</b>[&#964;]</code>
+            using the <code>&#964;</code>-adic NAF (TNAF) method.
+            @param p The F2mPoint to Multiply.
+            @param lambda The element <code>&#955;</code> of
+            <code><b>Z</b>[&#964;]</code>.
+            @return <code>&#955; * p</code>
+        </member>
+        <member name="M:Org.BouncyCastle.Math.EC.Abc.Tnaf.MultiplyFromTnaf(Org.BouncyCastle.Math.EC.F2mPoint,System.SByte[])">
+            Multiplies a {@link org.bouncycastle.math.ec.F2mPoint F2mPoint}
+            by an element <code>&#955;</code> of <code><b>Z</b>[&#964;]</code>
+            using the <code>&#964;</code>-adic NAF (TNAF) method, given the TNAF
+            of <code>&#955;</code>.
+            @param p The F2mPoint to Multiply.
+            @param u The the TNAF of <code>&#955;</code>..
+            @return <code>&#955; * p</code>
+        </member>
+        <member name="M:Org.BouncyCastle.Math.EC.Abc.Tnaf.TauAdicWNaf(System.SByte,Org.BouncyCastle.Math.EC.Abc.ZTauElement,System.SByte,Org.BouncyCastle.Math.BigInteger,Org.BouncyCastle.Math.BigInteger,Org.BouncyCastle.Math.EC.Abc.ZTauElement[])">
+            Computes the <code>[&#964;]</code>-adic window NAF of an element
+            <code>&#955;</code> of <code><b>Z</b>[&#964;]</code>.
+            @param mu The parameter &#956; of the elliptic curve.
+            @param lambda The element <code>&#955;</code> of
+            <code><b>Z</b>[&#964;]</code> of which to compute the
+            <code>[&#964;]</code>-adic NAF.
+            @param width The window width of the resulting WNAF.
+            @param pow2w 2<sup>width</sup>.
+            @param tw The auxiliary value <code>t<sub>w</sub></code>.
+            @param alpha The <code>&#945;<sub>u</sub></code>'s for the window width.
+            @return The <code>[&#964;]</code>-adic window NAF of
+            <code>&#955;</code>.
+        </member>
+        <member name="M:Org.BouncyCastle.Math.EC.Abc.Tnaf.GetPreComp(Org.BouncyCastle.Math.EC.F2mPoint,System.SByte)">
+            Does the precomputation for WTNAF multiplication.
+            @param p The <code>ECPoint</code> for which to do the precomputation.
+            @param a The parameter <code>a</code> of the elliptic curve.
+            @return The precomputation array for <code>p</code>. 
+        </member>
+        <member name="T:Org.BouncyCastle.Math.EC.Abc.ZTauElement">
+            Class representing an element of <code><b>Z</b>[&#964;]</code>. Let
+            <code>&#955;</code> be an element of <code><b>Z</b>[&#964;]</code>. Then
+            <code>&#955;</code> is given as <code>&#955; = u + v&#964;</code>. The
+            components <code>u</code> and <code>v</code> may be used directly, there
+            are no accessor methods.
+            Immutable class.
+        </member>
+        <member name="F:Org.BouncyCastle.Math.EC.Abc.ZTauElement.u">
+            The &quot;real&quot; part of <code>&#955;</code>.
+        </member>
+        <member name="F:Org.BouncyCastle.Math.EC.Abc.ZTauElement.v">
+            The &quot;<code>&#964;</code>-adic&quot; part of <code>&#955;</code>.
+        </member>
+        <member name="M:Org.BouncyCastle.Math.EC.Abc.ZTauElement.#ctor(Org.BouncyCastle.Math.BigInteger,Org.BouncyCastle.Math.BigInteger)">
+            Constructor for an element <code>&#955;</code> of
+            <code><b>Z</b>[&#964;]</code>.
+            @param u The &quot;real&quot; part of <code>&#955;</code>.
+            @param v The &quot;<code>&#964;</code>-adic&quot; part of
+            <code>&#955;</code>.
+        </member>
+        <member name="T:Org.BouncyCastle.Math.EC.ECCurve">
+            <remarks>Base class for an elliptic curve.</remarks>
+        </member>
+        <member name="M:Org.BouncyCastle.Math.EC.ECCurve.SetPreCompInfo(Org.BouncyCastle.Math.EC.ECPoint,System.String,Org.BouncyCastle.Math.EC.Multiplier.PreCompInfo)">
+            Adds <code>PreCompInfo</code> for a point on this curve, under a given name. Used by
+            <code>ECMultiplier</code>s to save the precomputation for this <code>ECPoint</code> for use
+            by subsequent multiplication.
+            
+            @param point
+                       The <code>ECPoint</code> to store precomputations for.
+            @param name
+                       A <code>String</code> used to index precomputations of different types.
+            @param preCompInfo
+                       The values precomputed by the <code>ECMultiplier</code>.
+        </member>
+        <member name="M:Org.BouncyCastle.Math.EC.ECCurve.NormalizeAll(Org.BouncyCastle.Math.EC.ECPoint[])">
+            Normalization ensures that any projective coordinate is 1, and therefore that the x, y
+            coordinates reflect those of the equivalent point in an affine coordinate system. Where more
+            than one point is to be normalized, this method will generally be more efficient than
+            normalizing each point separately.
+            
+            @param points
+                       An array of points that will be updated in place with their normalized versions,
+                       where necessary
+        </member>
+        <member name="M:Org.BouncyCastle.Math.EC.ECCurve.GetMultiplier">
+            Sets the default <code>ECMultiplier</code>, unless already set. 
+        </member>
+        <member name="M:Org.BouncyCastle.Math.EC.ECCurve.DecodePoint(System.Byte[])">
+            Decode a point on this curve from its ASN.1 encoding. The different
+            encodings are taken account of, including point compression for
+            <code>F<sub>p</sub></code> (X9.62 s 4.2.1 pg 17).
+            @return The decoded point.
+        </member>
+        <member name="M:Org.BouncyCastle.Math.EC.Custom.Djb.Curve25519FieldElement.Sqrt">
+            return a sqrt root - the routine verifies that the calculation returns the right value - if
+            none exists it returns null.
+        </member>
+        <member name="T:Org.BouncyCastle.Math.EC.ECPoint">
+            base class for points on elliptic curves.
+        </member>
+        <member name="M:Org.BouncyCastle.Math.EC.ECPoint.Normalize">
+            Normalization ensures that any projective coordinate is 1, and therefore that the x, y
+            coordinates reflect those of the equivalent point in an affine coordinate system.
+            
+            @return a new ECPoint instance representing the same point, but with normalized coordinates
+        </member>
+        <member name="P:Org.BouncyCastle.Math.EC.ECPoint.X">
+            Normalizes this point, and then returns the affine x-coordinate.
+            
+            Note: normalization can be expensive, this method is deprecated in favour
+            of caller-controlled normalization.
+        </member>
+        <member name="P:Org.BouncyCastle.Math.EC.ECPoint.Y">
+            Normalizes this point, and then returns the affine y-coordinate.
+            
+            Note: normalization can be expensive, this method is deprecated in favour
+            of caller-controlled normalization.
+        </member>
+        <member name="P:Org.BouncyCastle.Math.EC.ECPoint.AffineXCoord">
+            Returns the affine x-coordinate after checking that this point is normalized.
+            
+            @return The affine x-coordinate of this point
+            @throws IllegalStateException if the point is not normalized
+        </member>
+        <member name="P:Org.BouncyCastle.Math.EC.ECPoint.AffineYCoord">
+            Returns the affine y-coordinate after checking that this point is normalized
+            
+            @return The affine y-coordinate of this point
+            @throws IllegalStateException if the point is not normalized
+        </member>
+        <member name="P:Org.BouncyCastle.Math.EC.ECPoint.XCoord">
+            Returns the x-coordinate.
+            
+            Caution: depending on the curve's coordinate system, this may not be the same value as in an
+            affine coordinate system; use Normalize() to get a point where the coordinates have their
+            affine values, or use AffineXCoord if you expect the point to already have been normalized.
+            
+            @return the x-coordinate of this point
+        </member>
+        <member name="P:Org.BouncyCastle.Math.EC.ECPoint.YCoord">
+            Returns the y-coordinate.
+            
+            Caution: depending on the curve's coordinate system, this may not be the same value as in an
+            affine coordinate system; use Normalize() to get a point where the coordinates have their
+            affine values, or use AffineYCoord if you expect the point to already have been normalized.
+            
+            @return the y-coordinate of this point
+        </member>
+        <member name="M:Org.BouncyCastle.Math.EC.ECPointBase.GetEncoded(System.Boolean)">
+            return the field element encoded with point compression. (S 4.3.6)
+        </member>
+        <member name="M:Org.BouncyCastle.Math.EC.ECPointBase.Multiply(Org.BouncyCastle.Math.BigInteger)">
+            Multiplies this <code>ECPoint</code> by the given number.
+            @param k The multiplicator.
+            @return <code>k * this</code>.
+        </member>
+        <member name="M:Org.BouncyCastle.Math.EC.Custom.Djb.Curve25519Point.#ctor(Org.BouncyCastle.Math.EC.ECCurve,Org.BouncyCastle.Math.EC.ECFieldElement,Org.BouncyCastle.Math.EC.ECFieldElement)">
+            Create a point which encodes with point compression.
+            
+            @param curve the curve to use
+            @param x affine x co-ordinate
+            @param y affine y co-ordinate
+            
+            @deprecated Use ECCurve.CreatePoint to construct points
+        </member>
+        <member name="M:Org.BouncyCastle.Math.EC.Custom.Djb.Curve25519Point.#ctor(Org.BouncyCastle.Math.EC.ECCurve,Org.BouncyCastle.Math.EC.ECFieldElement,Org.BouncyCastle.Math.EC.ECFieldElement,System.Boolean)">
+            Create a point that encodes with or without point compresion.
+            
+            @param curve the curve to use
+            @param x affine x co-ordinate
+            @param y affine y co-ordinate
+            @param withCompression if true encode with point compression
+            
+            @deprecated per-point compression property will be removed, refer {@link #getEncoded(bool)}
+        </member>
+        <member name="M:Org.BouncyCastle.Math.EC.Custom.Sec.SecP192K1FieldElement.Sqrt">
+            return a sqrt root - the routine verifies that the calculation returns the right value - if
+            none exists it returns null.
+        </member>
+        <member name="M:Org.BouncyCastle.Math.EC.Custom.Sec.SecP192K1Point.#ctor(Org.BouncyCastle.Math.EC.ECCurve,Org.BouncyCastle.Math.EC.ECFieldElement,Org.BouncyCastle.Math.EC.ECFieldElement)">
+            Create a point which encodes with point compression.
+            
+            @param curve
+                       the curve to use
+            @param x
+                       affine x co-ordinate
+            @param y
+                       affine y co-ordinate
+            
+            @deprecated Use ECCurve.createPoint to construct points
+        </member>
+        <member name="M:Org.BouncyCastle.Math.EC.Custom.Sec.SecP192K1Point.#ctor(Org.BouncyCastle.Math.EC.ECCurve,Org.BouncyCastle.Math.EC.ECFieldElement,Org.BouncyCastle.Math.EC.ECFieldElement,System.Boolean)">
+            Create a point that encodes with or without point compresion.
+            
+            @param curve
+                       the curve to use
+            @param x
+                       affine x co-ordinate
+            @param y
+                       affine y co-ordinate
+            @param withCompression
+                       if true encode with point compression
+            
+            @deprecated per-point compression property will be removed, refer
+                        {@link #getEncoded(bool)}
+        </member>
+        <member name="M:Org.BouncyCastle.Math.EC.Custom.Sec.SecP192R1FieldElement.Sqrt">
+            return a sqrt root - the routine verifies that the calculation returns the right value - if
+            none exists it returns null.
+        </member>
+        <member name="M:Org.BouncyCastle.Math.EC.Custom.Sec.SecP192R1Point.#ctor(Org.BouncyCastle.Math.EC.ECCurve,Org.BouncyCastle.Math.EC.ECFieldElement,Org.BouncyCastle.Math.EC.ECFieldElement)">
+            Create a point which encodes with point compression.
+            
+            @param curve
+                       the curve to use
+            @param x
+                       affine x co-ordinate
+            @param y
+                       affine y co-ordinate
+            
+            @deprecated Use ECCurve.createPoint to construct points
+        </member>
+        <member name="M:Org.BouncyCastle.Math.EC.Custom.Sec.SecP192R1Point.#ctor(Org.BouncyCastle.Math.EC.ECCurve,Org.BouncyCastle.Math.EC.ECFieldElement,Org.BouncyCastle.Math.EC.ECFieldElement,System.Boolean)">
+            Create a point that encodes with or without point compresion.
+            
+            @param curve
+                       the curve to use
+            @param x
+                       affine x co-ordinate
+            @param y
+                       affine y co-ordinate
+            @param withCompression
+                       if true encode with point compression
+            
+            @deprecated per-point compression property will be removed, refer
+                        {@link #getEncoded(bool)}
+        </member>
+        <member name="M:Org.BouncyCastle.Math.EC.Custom.Sec.SecP224K1FieldElement.Sqrt">
+            return a sqrt root - the routine verifies that the calculation returns the right value - if
+            none exists it returns null.
+        </member>
+        <member name="M:Org.BouncyCastle.Math.EC.Custom.Sec.SecP224K1Point.#ctor(Org.BouncyCastle.Math.EC.ECCurve,Org.BouncyCastle.Math.EC.ECFieldElement,Org.BouncyCastle.Math.EC.ECFieldElement)">
+            Create a point which encodes with point compression.
+            
+            @param curve
+                       the curve to use
+            @param x
+                       affine x co-ordinate
+            @param y
+                       affine y co-ordinate
+            
+            @deprecated Use ECCurve.createPoint to construct points
+        </member>
+        <member name="M:Org.BouncyCastle.Math.EC.Custom.Sec.SecP224K1Point.#ctor(Org.BouncyCastle.Math.EC.ECCurve,Org.BouncyCastle.Math.EC.ECFieldElement,Org.BouncyCastle.Math.EC.ECFieldElement,System.Boolean)">
+            Create a point that encodes with or without point compresion.
+            
+            @param curve
+                       the curve to use
+            @param x
+                       affine x co-ordinate
+            @param y
+                       affine y co-ordinate
+            @param withCompression
+                       if true encode with point compression
+            
+            @deprecated per-point compression property will be removed, refer
+                        {@link #getEncoded(bool)}
+        </member>
+        <member name="M:Org.BouncyCastle.Math.EC.Custom.Sec.SecP224R1FieldElement.Sqrt">
+            return a sqrt root - the routine verifies that the calculation returns the right value - if
+            none exists it returns null.
+        </member>
+        <member name="M:Org.BouncyCastle.Math.EC.Custom.Sec.SecP224R1Point.#ctor(Org.BouncyCastle.Math.EC.ECCurve,Org.BouncyCastle.Math.EC.ECFieldElement,Org.BouncyCastle.Math.EC.ECFieldElement)">
+            Create a point which encodes with point compression.
+            
+            @param curve
+                       the curve to use
+            @param x
+                       affine x co-ordinate
+            @param y
+                       affine y co-ordinate
+            
+            @deprecated Use ECCurve.createPoint to construct points
+        </member>
+        <member name="M:Org.BouncyCastle.Math.EC.Custom.Sec.SecP224R1Point.#ctor(Org.BouncyCastle.Math.EC.ECCurve,Org.BouncyCastle.Math.EC.ECFieldElement,Org.BouncyCastle.Math.EC.ECFieldElement,System.Boolean)">
+            Create a point that encodes with or without point compresion.
+            
+            @param curve
+                       the curve to use
+            @param x
+                       affine x co-ordinate
+            @param y
+                       affine y co-ordinate
+            @param withCompression
+                       if true encode with point compression
+            
+            @deprecated per-point compression property will be removed, refer
+                        {@link #getEncoded(bool)}
+        </member>
+        <member name="M:Org.BouncyCastle.Math.EC.Custom.Sec.SecP256K1FieldElement.Sqrt">
+            return a sqrt root - the routine verifies that the calculation returns the right value - if
+            none exists it returns null.
+        </member>
+        <member name="M:Org.BouncyCastle.Math.EC.Custom.Sec.SecP256K1Point.#ctor(Org.BouncyCastle.Math.EC.ECCurve,Org.BouncyCastle.Math.EC.ECFieldElement,Org.BouncyCastle.Math.EC.ECFieldElement)">
+            Create a point which encodes with point compression.
+            
+            @param curve
+                       the curve to use
+            @param x
+                       affine x co-ordinate
+            @param y
+                       affine y co-ordinate
+            
+            @deprecated Use ECCurve.createPoint to construct points
+        </member>
+        <member name="M:Org.BouncyCastle.Math.EC.Custom.Sec.SecP256K1Point.#ctor(Org.BouncyCastle.Math.EC.ECCurve,Org.BouncyCastle.Math.EC.ECFieldElement,Org.BouncyCastle.Math.EC.ECFieldElement,System.Boolean)">
+            Create a point that encodes with or without point compresion.
+            
+            @param curve
+                       the curve to use
+            @param x
+                       affine x co-ordinate
+            @param y
+                       affine y co-ordinate
+            @param withCompression
+                       if true encode with point compression
+            
+            @deprecated per-point compression property will be removed, refer
+                        {@link #getEncoded(bool)}
+        </member>
+        <member name="M:Org.BouncyCastle.Math.EC.Custom.Sec.SecP256R1FieldElement.Sqrt">
+            return a sqrt root - the routine verifies that the calculation returns the right value - if
+            none exists it returns null.
+        </member>
+        <member name="M:Org.BouncyCastle.Math.EC.Custom.Sec.SecP256R1Point.#ctor(Org.BouncyCastle.Math.EC.ECCurve,Org.BouncyCastle.Math.EC.ECFieldElement,Org.BouncyCastle.Math.EC.ECFieldElement)">
+            Create a point which encodes with point compression.
+            
+            @param curve
+                       the curve to use
+            @param x
+                       affine x co-ordinate
+            @param y
+                       affine y co-ordinate
+            
+            @deprecated Use ECCurve.createPoint to construct points
+        </member>
+        <member name="M:Org.BouncyCastle.Math.EC.Custom.Sec.SecP256R1Point.#ctor(Org.BouncyCastle.Math.EC.ECCurve,Org.BouncyCastle.Math.EC.ECFieldElement,Org.BouncyCastle.Math.EC.ECFieldElement,System.Boolean)">
+            Create a point that encodes with or without point compresion.
+            
+            @param curve
+                       the curve to use
+            @param x
+                       affine x co-ordinate
+            @param y
+                       affine y co-ordinate
+            @param withCompression
+                       if true encode with point compression
+            
+            @deprecated per-point compression property will be removed, refer
+                        {@link #getEncoded(bool)}
+        </member>
+        <member name="M:Org.BouncyCastle.Math.EC.Custom.Sec.SecP384R1FieldElement.Sqrt">
+            return a sqrt root - the routine verifies that the calculation returns the right value - if
+            none exists it returns null.
+        </member>
+        <member name="M:Org.BouncyCastle.Math.EC.Custom.Sec.SecP384R1Point.#ctor(Org.BouncyCastle.Math.EC.ECCurve,Org.BouncyCastle.Math.EC.ECFieldElement,Org.BouncyCastle.Math.EC.ECFieldElement)">
+            Create a point which encodes with point compression.
+            
+            @param curve
+                       the curve to use
+            @param x
+                       affine x co-ordinate
+            @param y
+                       affine y co-ordinate
+            
+            @deprecated Use ECCurve.createPoint to construct points
+        </member>
+        <member name="M:Org.BouncyCastle.Math.EC.Custom.Sec.SecP384R1Point.#ctor(Org.BouncyCastle.Math.EC.ECCurve,Org.BouncyCastle.Math.EC.ECFieldElement,Org.BouncyCastle.Math.EC.ECFieldElement,System.Boolean)">
+            Create a point that encodes with or without point compresion.
+            
+            @param curve
+                       the curve to use
+            @param x
+                       affine x co-ordinate
+            @param y
+                       affine y co-ordinate
+            @param withCompression
+                       if true encode with point compression
+            
+            @deprecated per-point compression property will be removed, refer
+                        {@link #getEncoded(bool)}
+        </member>
+        <member name="M:Org.BouncyCastle.Math.EC.Custom.Sec.SecP521R1FieldElement.Sqrt">
+            return a sqrt root - the routine verifies that the calculation returns the right value - if
+            none exists it returns null.
+        </member>
+        <member name="M:Org.BouncyCastle.Math.EC.Custom.Sec.SecP521R1Point.#ctor(Org.BouncyCastle.Math.EC.ECCurve,Org.BouncyCastle.Math.EC.ECFieldElement,Org.BouncyCastle.Math.EC.ECFieldElement)">
+            Create a point which encodes with point compression.
+            
+            @param curve
+                       the curve to use
+            @param x
+                       affine x co-ordinate
+            @param y
+                       affine y co-ordinate
+            
+            @deprecated Use ECCurve.createPoint to construct points
+        </member>
+        <member name="M:Org.BouncyCastle.Math.EC.Custom.Sec.SecP521R1Point.#ctor(Org.BouncyCastle.Math.EC.ECCurve,Org.BouncyCastle.Math.EC.ECFieldElement,Org.BouncyCastle.Math.EC.ECFieldElement,System.Boolean)">
+            Create a point that encodes with or without point compresion.
+            
+            @param curve
+                       the curve to use
+            @param x
+                       affine x co-ordinate
+            @param y
+                       affine y co-ordinate
+            @param withCompression
+                       if true encode with point compression
+            
+            @deprecated per-point compression property will be removed, refer
+                        {@link #getEncoded(bool)}
+        </member>
+        <member name="M:Org.BouncyCastle.Math.EC.ECAlgorithms.ReferenceMultiply(Org.BouncyCastle.Math.EC.ECPoint,Org.BouncyCastle.Math.BigInteger)">
+            Simple shift-and-add multiplication. Serves as reference implementation
+            to verify (possibly faster) implementations, and for very small scalars.
+            
+            @param p
+                       The point to multiply.
+            @param k
+                       The multiplier.
+            @return The result of the point multiplication <code>kP</code>.
+        </member>
+        <member name="T:Org.BouncyCastle.Math.EC.FpCurve">
+            Elliptic curve over Fp
+        </member>
+        <member name="T:Org.BouncyCastle.Math.EC.F2mCurve">
+            Elliptic curves over F2m. The Weierstrass equation is given by
+            <code>y<sup>2</sup> + xy = x<sup>3</sup> + ax<sup>2</sup> + b</code>.
+        </member>
+        <member name="F:Org.BouncyCastle.Math.EC.F2mCurve.m">
+            The exponent <code>m</code> of <code>F<sub>2<sup>m</sup></sub></code>.
+        </member>
+        <member name="F:Org.BouncyCastle.Math.EC.F2mCurve.k1">
+            TPB: The integer <code>k</code> where <code>x<sup>m</sup> +
+            x<sup>k</sup> + 1</code> represents the reduction polynomial
+            <code>f(z)</code>.<br/>
+            PPB: The integer <code>k1</code> where <code>x<sup>m</sup> +
+            x<sup>k3</sup> + x<sup>k2</sup> + x<sup>k1</sup> + 1</code>
+            represents the reduction polynomial <code>f(z)</code>.<br/>
+        </member>
+        <member name="F:Org.BouncyCastle.Math.EC.F2mCurve.k2">
+            TPB: Always set to <code>0</code><br/>
+            PPB: The integer <code>k2</code> where <code>x<sup>m</sup> +
+            x<sup>k3</sup> + x<sup>k2</sup> + x<sup>k1</sup> + 1</code>
+            represents the reduction polynomial <code>f(z)</code>.<br/>
+        </member>
+        <member name="F:Org.BouncyCastle.Math.EC.F2mCurve.k3">
+            TPB: Always set to <code>0</code><br/>
+            PPB: The integer <code>k3</code> where <code>x<sup>m</sup> +
+            x<sup>k3</sup> + x<sup>k2</sup> + x<sup>k1</sup> + 1</code>
+            represents the reduction polynomial <code>f(z)</code>.<br/>
+        </member>
+        <member name="F:Org.BouncyCastle.Math.EC.F2mCurve.m_infinity">
+            The point at infinity on this curve.
+        </member>
+        <member name="F:Org.BouncyCastle.Math.EC.F2mCurve.mu">
+            The parameter <code>&#956;</code> of the elliptic curve if this is
+            a Koblitz curve.
+        </member>
+        <member name="F:Org.BouncyCastle.Math.EC.F2mCurve.si">
+            The auxiliary values <code>s<sub>0</sub></code> and
+            <code>s<sub>1</sub></code> used for partial modular reduction for
+            Koblitz curves.
+        </member>
+        <member name="M:Org.BouncyCastle.Math.EC.F2mCurve.#ctor(System.Int32,System.Int32,Org.BouncyCastle.Math.BigInteger,Org.BouncyCastle.Math.BigInteger)">
+            Constructor for Trinomial Polynomial Basis (TPB).
+            @param m  The exponent <code>m</code> of
+            <code>F<sub>2<sup>m</sup></sub></code>.
+            @param k The integer <code>k</code> where <code>x<sup>m</sup> +
+            x<sup>k</sup> + 1</code> represents the reduction
+            polynomial <code>f(z)</code>.
+            @param a The coefficient <code>a</code> in the Weierstrass equation
+            for non-supersingular elliptic curves over
+            <code>F<sub>2<sup>m</sup></sub></code>.
+            @param b The coefficient <code>b</code> in the Weierstrass equation
+            for non-supersingular elliptic curves over
+            <code>F<sub>2<sup>m</sup></sub></code>.
+        </member>
+        <member name="M:Org.BouncyCastle.Math.EC.F2mCurve.#ctor(System.Int32,System.Int32,Org.BouncyCastle.Math.BigInteger,Org.BouncyCastle.Math.BigInteger,Org.BouncyCastle.Math.BigInteger,Org.BouncyCastle.Math.BigInteger)">
+            Constructor for Trinomial Polynomial Basis (TPB).
+            @param m  The exponent <code>m</code> of
+            <code>F<sub>2<sup>m</sup></sub></code>.
+            @param k The integer <code>k</code> where <code>x<sup>m</sup> +
+            x<sup>k</sup> + 1</code> represents the reduction
+            polynomial <code>f(z)</code>.
+            @param a The coefficient <code>a</code> in the Weierstrass equation
+            for non-supersingular elliptic curves over
+            <code>F<sub>2<sup>m</sup></sub></code>.
+            @param b The coefficient <code>b</code> in the Weierstrass equation
+            for non-supersingular elliptic curves over
+            <code>F<sub>2<sup>m</sup></sub></code>.
+            @param order The order of the main subgroup of the elliptic curve.
+            @param cofactor The cofactor of the elliptic curve, i.e.
+            <code>#E<sub>a</sub>(F<sub>2<sup>m</sup></sub>) = h * n</code>.
+        </member>
+        <member name="M:Org.BouncyCastle.Math.EC.F2mCurve.#ctor(System.Int32,System.Int32,System.Int32,System.Int32,Org.BouncyCastle.Math.BigInteger,Org.BouncyCastle.Math.BigInteger)">
+            Constructor for Pentanomial Polynomial Basis (PPB).
+            @param m  The exponent <code>m</code> of
+            <code>F<sub>2<sup>m</sup></sub></code>.
+            @param k1 The integer <code>k1</code> where <code>x<sup>m</sup> +
+            x<sup>k3</sup> + x<sup>k2</sup> + x<sup>k1</sup> + 1</code>
+            represents the reduction polynomial <code>f(z)</code>.
+            @param k2 The integer <code>k2</code> where <code>x<sup>m</sup> +
+            x<sup>k3</sup> + x<sup>k2</sup> + x<sup>k1</sup> + 1</code>
+            represents the reduction polynomial <code>f(z)</code>.
+            @param k3 The integer <code>k3</code> where <code>x<sup>m</sup> +
+            x<sup>k3</sup> + x<sup>k2</sup> + x<sup>k1</sup> + 1</code>
+            represents the reduction polynomial <code>f(z)</code>.
+            @param a The coefficient <code>a</code> in the Weierstrass equation
+            for non-supersingular elliptic curves over
+            <code>F<sub>2<sup>m</sup></sub></code>.
+            @param b The coefficient <code>b</code> in the Weierstrass equation
+            for non-supersingular elliptic curves over
+            <code>F<sub>2<sup>m</sup></sub></code>.
+        </member>
+        <member name="M:Org.BouncyCastle.Math.EC.F2mCurve.#ctor(System.Int32,System.Int32,System.Int32,System.Int32,Org.BouncyCastle.Math.BigInteger,Org.BouncyCastle.Math.BigInteger,Org.BouncyCastle.Math.BigInteger,Org.BouncyCastle.Math.BigInteger)">
+            Constructor for Pentanomial Polynomial Basis (PPB).
+            @param m  The exponent <code>m</code> of
+            <code>F<sub>2<sup>m</sup></sub></code>.
+            @param k1 The integer <code>k1</code> where <code>x<sup>m</sup> +
+            x<sup>k3</sup> + x<sup>k2</sup> + x<sup>k1</sup> + 1</code>
+            represents the reduction polynomial <code>f(z)</code>.
+            @param k2 The integer <code>k2</code> where <code>x<sup>m</sup> +
+            x<sup>k3</sup> + x<sup>k2</sup> + x<sup>k1</sup> + 1</code>
+            represents the reduction polynomial <code>f(z)</code>.
+            @param k3 The integer <code>k3</code> where <code>x<sup>m</sup> +
+            x<sup>k3</sup> + x<sup>k2</sup> + x<sup>k1</sup> + 1</code>
+            represents the reduction polynomial <code>f(z)</code>.
+            @param a The coefficient <code>a</code> in the Weierstrass equation
+            for non-supersingular elliptic curves over
+            <code>F<sub>2<sup>m</sup></sub></code>.
+            @param b The coefficient <code>b</code> in the Weierstrass equation
+            for non-supersingular elliptic curves over
+            <code>F<sub>2<sup>m</sup></sub></code>.
+            @param order The order of the main subgroup of the elliptic curve.
+            @param cofactor The cofactor of the elliptic curve, i.e.
+            <code>#E<sub>a</sub>(F<sub>2<sup>m</sup></sub>) = h * n</code>.
+        </member>
+        <member name="M:Org.BouncyCastle.Math.EC.F2mCurve.GetMu">
+            Returns the parameter <code>&#956;</code> of the elliptic curve.
+            @return <code>&#956;</code> of the elliptic curve.
+            @throws ArgumentException if the given ECCurve is not a
+            Koblitz curve.
+        </member>
+        <member name="M:Org.BouncyCastle.Math.EC.F2mCurve.GetSi">
+            @return the auxiliary values <code>s<sub>0</sub></code> and
+            <code>s<sub>1</sub></code> used for partial modular reduction for
+            Koblitz curves.
+        </member>
+        <member name="M:Org.BouncyCastle.Math.EC.F2mCurve.SolveQuadradicEquation(Org.BouncyCastle.Math.EC.ECFieldElement)">
+             Solves a quadratic equation <code>z<sup>2</sup> + z = beta</code>(X9.62
+             D.1.6) The other solution is <code>z + 1</code>.
+            
+             @param beta
+                        The value to solve the qradratic equation for.
+             @return the solution for <code>z<sup>2</sup> + z = beta</code> or
+                     <code>null</code> if no solution exists.
+        </member>
+        <member name="M:Org.BouncyCastle.Math.EC.F2mCurve.IsTrinomial">
+             Return true if curve uses a Trinomial basis.
+            
+             @return true if curve Trinomial, false otherwise.
+        </member>
+        <member name="P:Org.BouncyCastle.Math.EC.F2mCurve.IsKoblitz">
+            Returns true if this is a Koblitz curve (ABC curve).
+            @return true if this is a Koblitz curve (ABC curve), false otherwise
+        </member>
+        <member name="M:Org.BouncyCastle.Math.EC.FpFieldElement.Sqrt">
+            return a sqrt root - the routine verifies that the calculation
+            returns the right value - if none exists it returns null.
+        </member>
+        <member name="P:Org.BouncyCastle.Math.EC.FpFieldElement.FieldName">
+             return the field name for this field.
+            
+             @return the string "Fp".
+        </member>
+        <member name="T:Org.BouncyCastle.Math.EC.F2mFieldElement">
+            Class representing the Elements of the finite field
+            <code>F<sub>2<sup>m</sup></sub></code> in polynomial basis (PB)
+            representation. Both trinomial (Tpb) and pentanomial (Ppb) polynomial
+            basis representations are supported. Gaussian normal basis (GNB)
+            representation is not supported.
+        </member>
+        <member name="F:Org.BouncyCastle.Math.EC.F2mFieldElement.Gnb">
+            Indicates gaussian normal basis representation (GNB). Number chosen
+            according to X9.62. GNB is not implemented at present.
+        </member>
+        <member name="F:Org.BouncyCastle.Math.EC.F2mFieldElement.Tpb">
+            Indicates trinomial basis representation (Tpb). Number chosen
+            according to X9.62.
+        </member>
+        <member name="F:Org.BouncyCastle.Math.EC.F2mFieldElement.Ppb">
+            Indicates pentanomial basis representation (Ppb). Number chosen
+            according to X9.62.
+        </member>
+        <member name="F:Org.BouncyCastle.Math.EC.F2mFieldElement.representation">
+            Tpb or Ppb.
+        </member>
+        <member name="F:Org.BouncyCastle.Math.EC.F2mFieldElement.m">
+            The exponent <code>m</code> of <code>F<sub>2<sup>m</sup></sub></code>.
+        </member>
+        <member name="F:Org.BouncyCastle.Math.EC.F2mFieldElement.x">
+            The <code>LongArray</code> holding the bits.
+        </member>
+        <member name="M:Org.BouncyCastle.Math.EC.F2mFieldElement.#ctor(System.Int32,System.Int32,System.Int32,System.Int32,Org.BouncyCastle.Math.BigInteger)">
+            Constructor for Ppb.
+            @param m  The exponent <code>m</code> of
+            <code>F<sub>2<sup>m</sup></sub></code>.
+            @param k1 The integer <code>k1</code> where <code>x<sup>m</sup> +
+            x<sup>k3</sup> + x<sup>k2</sup> + x<sup>k1</sup> + 1</code>
+            represents the reduction polynomial <code>f(z)</code>.
+            @param k2 The integer <code>k2</code> where <code>x<sup>m</sup> +
+            x<sup>k3</sup> + x<sup>k2</sup> + x<sup>k1</sup> + 1</code>
+            represents the reduction polynomial <code>f(z)</code>.
+            @param k3 The integer <code>k3</code> where <code>x<sup>m</sup> +
+            x<sup>k3</sup> + x<sup>k2</sup> + x<sup>k1</sup> + 1</code>
+            represents the reduction polynomial <code>f(z)</code>.
+            @param x The BigInteger representing the value of the field element.
+        </member>
+        <member name="M:Org.BouncyCastle.Math.EC.F2mFieldElement.#ctor(System.Int32,System.Int32,Org.BouncyCastle.Math.BigInteger)">
+            Constructor for Tpb.
+            @param m  The exponent <code>m</code> of
+            <code>F<sub>2<sup>m</sup></sub></code>.
+            @param k The integer <code>k</code> where <code>x<sup>m</sup> +
+            x<sup>k</sup> + 1</code> represents the reduction
+            polynomial <code>f(z)</code>.
+            @param x The BigInteger representing the value of the field element.
+        </member>
+        <member name="M:Org.BouncyCastle.Math.EC.F2mFieldElement.CheckFieldElements(Org.BouncyCastle.Math.EC.ECFieldElement,Org.BouncyCastle.Math.EC.ECFieldElement)">
+            Checks, if the ECFieldElements <code>a</code> and <code>b</code>
+            are elements of the same field <code>F<sub>2<sup>m</sup></sub></code>
+            (having the same representation).
+            @param a field element.
+            @param b field element to be compared.
+            @throws ArgumentException if <code>a</code> and <code>b</code>
+            are not elements of the same field
+            <code>F<sub>2<sup>m</sup></sub></code> (having the same
+            representation).
+        </member>
+        <member name="P:Org.BouncyCastle.Math.EC.F2mFieldElement.Representation">
+            @return the representation of the field
+            <code>F<sub>2<sup>m</sup></sub></code>, either of
+            {@link F2mFieldElement.Tpb} (trinomial
+            basis representation) or
+            {@link F2mFieldElement.Ppb} (pentanomial
+            basis representation).
+        </member>
+        <member name="P:Org.BouncyCastle.Math.EC.F2mFieldElement.M">
+            @return the degree <code>m</code> of the reduction polynomial
+            <code>f(z)</code>.
+        </member>
+        <member name="P:Org.BouncyCastle.Math.EC.F2mFieldElement.K1">
+            @return Tpb: The integer <code>k</code> where <code>x<sup>m</sup> +
+            x<sup>k</sup> + 1</code> represents the reduction polynomial
+            <code>f(z)</code>.<br/>
+            Ppb: The integer <code>k1</code> where <code>x<sup>m</sup> +
+            x<sup>k3</sup> + x<sup>k2</sup> + x<sup>k1</sup> + 1</code>
+            represents the reduction polynomial <code>f(z)</code>.<br/>
+        </member>
+        <member name="P:Org.BouncyCastle.Math.EC.F2mFieldElement.K2">
+            @return Tpb: Always returns <code>0</code><br/>
+            Ppb: The integer <code>k2</code> where <code>x<sup>m</sup> +
+            x<sup>k3</sup> + x<sup>k2</sup> + x<sup>k1</sup> + 1</code>
+            represents the reduction polynomial <code>f(z)</code>.<br/>
+        </member>
+        <member name="P:Org.BouncyCastle.Math.EC.F2mFieldElement.K3">
+            @return Tpb: Always set to <code>0</code><br/>
+            Ppb: The integer <code>k3</code> where <code>x<sup>m</sup> +
+            x<sup>k3</sup> + x<sup>k2</sup> + x<sup>k1</sup> + 1</code>
+            represents the reduction polynomial <code>f(z)</code>.<br/>
+        </member>
+        <member name="T:Org.BouncyCastle.Math.EC.FpPoint">
+            Elliptic curve points over Fp
+        </member>
+        <member name="M:Org.BouncyCastle.Math.EC.FpPoint.#ctor(Org.BouncyCastle.Math.EC.ECCurve,Org.BouncyCastle.Math.EC.ECFieldElement,Org.BouncyCastle.Math.EC.ECFieldElement)">
+             Create a point which encodes without point compression.
+            
+             @param curve the curve to use
+             @param x affine x co-ordinate
+             @param y affine y co-ordinate
+        </member>
+        <member name="M:Org.BouncyCastle.Math.EC.FpPoint.#ctor(Org.BouncyCastle.Math.EC.ECCurve,Org.BouncyCastle.Math.EC.ECFieldElement,Org.BouncyCastle.Math.EC.ECFieldElement,System.Boolean)">
+             Create a point that encodes with or without point compression.
+            
+             @param curve the curve to use
+             @param x affine x co-ordinate
+             @param y affine y co-ordinate
+             @param withCompression if true encode with point compression
+        </member>
+        <member name="T:Org.BouncyCastle.Math.EC.F2mPoint">
+            Elliptic curve points over F2m
+        </member>
+        <member name="M:Org.BouncyCastle.Math.EC.F2mPoint.#ctor(Org.BouncyCastle.Math.EC.ECCurve,Org.BouncyCastle.Math.EC.ECFieldElement,Org.BouncyCastle.Math.EC.ECFieldElement)">
+            @param curve base curve
+            @param x x point
+            @param y y point
+        </member>
+        <member name="M:Org.BouncyCastle.Math.EC.F2mPoint.#ctor(Org.BouncyCastle.Math.EC.ECCurve,Org.BouncyCastle.Math.EC.ECFieldElement,Org.BouncyCastle.Math.EC.ECFieldElement,System.Boolean)">
+            @param curve base curve
+            @param x x point
+            @param y y point
+            @param withCompression true if encode with point compression.
+        </member>
+        <member name="M:Org.BouncyCastle.Math.EC.F2mPoint.#ctor(Org.BouncyCastle.Math.EC.ECCurve)">
+            Constructor for point at infinity
+        </member>
+        <member name="M:Org.BouncyCastle.Math.EC.F2mPoint.CheckPoints(Org.BouncyCastle.Math.EC.ECPoint,Org.BouncyCastle.Math.EC.ECPoint)">
+            Check, if two <code>ECPoint</code>s can be added or subtracted.
+            @param a The first <code>ECPoint</code> to check.
+            @param b The second <code>ECPoint</code> to check.
+            @throws IllegalArgumentException if <code>a</code> and <code>b</code>
+            cannot be added.
+        </member>
+        <member name="M:Org.BouncyCastle.Math.EC.F2mPoint.AddSimple(Org.BouncyCastle.Math.EC.F2mPoint)">
+            Adds another <code>ECPoints.F2m</code> to <code>this</code> without
+            checking if both points are on the same curve. Used by multiplication
+            algorithms, because there all points are a multiple of the same point
+            and hence the checks can be omitted.
+            @param b The other <code>ECPoints.F2m</code> to add to
+            <code>this</code>.
+            @return <code>this + b</code>
+        </member>
+        <member name="M:Org.BouncyCastle.Math.EC.F2mPoint.SubtractSimple(Org.BouncyCastle.Math.EC.F2mPoint)">
+            Subtracts another <code>ECPoints.F2m</code> from <code>this</code>
+            without checking if both points are on the same curve. Used by
+            multiplication algorithms, because there all points are a multiple
+            of the same point and hence the checks can be omitted.
+            @param b The other <code>ECPoints.F2m</code> to subtract from
+            <code>this</code>.
+            @return <code>this - b</code>
+        </member>
+        <member name="T:Org.BouncyCastle.Math.EC.Multiplier.ECMultiplier">
+            Interface for classes encapsulating a point multiplication algorithm
+            for <code>ECPoint</code>s.
+        </member>
+        <member name="M:Org.BouncyCastle.Math.EC.Multiplier.ECMultiplier.Multiply(Org.BouncyCastle.Math.EC.ECPoint,Org.BouncyCastle.Math.BigInteger)">
+            Multiplies the <code>ECPoint p</code> by <code>k</code>, i.e.
+            <code>p</code> is added <code>k</code> times to itself.
+            @param p The <code>ECPoint</code> to be multiplied.
+            @param k The factor by which <code>p</code> is multiplied.
+            @return <code>p</code> multiplied by <code>k</code>.
+        </member>
+        <member name="M:Org.BouncyCastle.Math.EC.Multiplier.DoubleAddMultiplier.MultiplyPositive(Org.BouncyCastle.Math.EC.ECPoint,Org.BouncyCastle.Math.BigInteger)">
+            Joye's double-add algorithm.
+        </member>
+        <member name="T:Org.BouncyCastle.Math.EC.Multiplier.FixedPointPreCompInfo">
+            Class holding precomputation data for fixed-point multiplications.
+        </member>
+        <member name="T:Org.BouncyCastle.Math.EC.Multiplier.PreCompInfo">
+            Interface for classes storing precomputation data for multiplication
+            algorithms. Used as a Memento (see GOF patterns) for
+            <code>WNafMultiplier</code>.
+        </member>
+        <member name="F:Org.BouncyCastle.Math.EC.Multiplier.FixedPointPreCompInfo.m_preComp">
+            Array holding the precomputed <code>ECPoint</code>s used for a fixed
+            point multiplication.
+        </member>
+        <member name="F:Org.BouncyCastle.Math.EC.Multiplier.FixedPointPreCompInfo.m_width">
+            The width used for the precomputation. If a larger width precomputation
+            is already available this may be larger than was requested, so calling
+            code should refer to the actual width.
+        </member>
+        <member name="T:Org.BouncyCastle.Math.EC.Multiplier.MixedNafR2LMultiplier">
+            Class implementing the NAF (Non-Adjacent Form) multiplication algorithm (right-to-left) using
+            mixed coordinates.
+        </member>
+        <member name="M:Org.BouncyCastle.Math.EC.Multiplier.MixedNafR2LMultiplier.#ctor">
+            By default, addition will be done in Jacobian coordinates, and doubling will be done in
+            Modified Jacobian coordinates (independent of the original coordinate system of each point).
+        </member>
+        <member name="M:Org.BouncyCastle.Math.EC.Multiplier.MontgomeryLadderMultiplier.MultiplyPositive(Org.BouncyCastle.Math.EC.ECPoint,Org.BouncyCastle.Math.BigInteger)">
+            Montgomery ladder.
+        </member>
+        <member name="T:Org.BouncyCastle.Math.EC.Multiplier.NafL2RMultiplier">
+            Class implementing the NAF (Non-Adjacent Form) multiplication algorithm (left-to-right).
+        </member>
+        <member name="T:Org.BouncyCastle.Math.EC.Multiplier.NafR2LMultiplier">
+            Class implementing the NAF (Non-Adjacent Form) multiplication algorithm (right-to-left).
+        </member>
+        <member name="T:Org.BouncyCastle.Math.EC.Multiplier.WNafL2RMultiplier">
+            Class implementing the WNAF (Window Non-Adjacent Form) multiplication
+            algorithm.
+        </member>
+        <member name="M:Org.BouncyCastle.Math.EC.Multiplier.WNafL2RMultiplier.MultiplyPositive(Org.BouncyCastle.Math.EC.ECPoint,Org.BouncyCastle.Math.BigInteger)">
+            Multiplies <code>this</code> by an integer <code>k</code> using the
+            Window NAF method.
+            @param k The integer by which <code>this</code> is multiplied.
+            @return A new <code>ECPoint</code> which equals <code>this</code>
+            multiplied by <code>k</code>.
+        </member>
+        <member name="M:Org.BouncyCastle.Math.EC.Multiplier.WNafL2RMultiplier.GetWindowSize(System.Int32)">
+            Determine window width to use for a scalar multiplication of the given size.
+            
+            @param bits the bit-length of the scalar to multiply by
+            @return the window size to use
+        </member>
+        <member name="T:Org.BouncyCastle.Math.EC.Multiplier.WNafPreCompInfo">
+            Class holding precomputation data for the WNAF (Window Non-Adjacent Form)
+            algorithm.
+        </member>
+        <member name="F:Org.BouncyCastle.Math.EC.Multiplier.WNafPreCompInfo.m_preComp">
+            Array holding the precomputed <code>ECPoint</code>s used for a Window
+            NAF multiplication.
+        </member>
+        <member name="F:Org.BouncyCastle.Math.EC.Multiplier.WNafPreCompInfo.m_preCompNeg">
+            Array holding the negations of the precomputed <code>ECPoint</code>s used
+            for a Window NAF multiplication.
+        </member>
+        <member name="F:Org.BouncyCastle.Math.EC.Multiplier.WNafPreCompInfo.m_twice">
+            Holds an <code>ECPoint</code> representing Twice(this). Used for the
+            Window NAF multiplication to create or extend the precomputed values.
+        </member>
+        <member name="M:Org.BouncyCastle.Math.EC.Multiplier.WNafUtilities.GenerateWindowNaf(System.Int32,Org.BouncyCastle.Math.BigInteger)">
+            Computes the Window NAF (non-adjacent Form) of an integer.
+            @param width The width <code>w</code> of the Window NAF. The width is
+            defined as the minimal number <code>w</code>, such that for any
+            <code>w</code> consecutive digits in the resulting representation, at
+            most one is non-zero.
+            @param k The integer of which the Window NAF is computed.
+            @return The Window NAF of the given width, such that the following holds:
+            <code>k = &amp;sum;<sub>i=0</sub><sup>l-1</sup> k<sub>i</sub>2<sup>i</sup>
+            </code>, where the <code>k<sub>i</sub></code> denote the elements of the
+            returned <code>byte[]</code>.
+        </member>
+        <member name="M:Org.BouncyCastle.Math.EC.Multiplier.WNafUtilities.GetWindowSize(System.Int32)">
+            Determine window width to use for a scalar multiplication of the given size.
+            
+            @param bits the bit-length of the scalar to multiply by
+            @return the window size to use
+        </member>
+        <member name="M:Org.BouncyCastle.Math.EC.Multiplier.WNafUtilities.GetWindowSize(System.Int32,System.Int32[])">
+            Determine window width to use for a scalar multiplication of the given size.
+            
+            @param bits the bit-length of the scalar to multiply by
+            @param windowSizeCutoffs a monotonically increasing list of bit sizes at which to increment the window width
+            @return the window size to use
+        </member>
+        <member name="T:Org.BouncyCastle.Math.EC.Multiplier.WTauNafMultiplier">
+            Class implementing the WTNAF (Window
+            <code>&#964;</code>-adic Non-Adjacent Form) algorithm.
+        </member>
+        <member name="M:Org.BouncyCastle.Math.EC.Multiplier.WTauNafMultiplier.MultiplyPositive(Org.BouncyCastle.Math.EC.ECPoint,Org.BouncyCastle.Math.BigInteger)">
+            Multiplies a {@link org.bouncycastle.math.ec.F2mPoint F2mPoint}
+            by <code>k</code> using the reduced <code>&#964;</code>-adic NAF (RTNAF)
+            method.
+            @param p The F2mPoint to multiply.
+            @param k The integer by which to multiply <code>k</code>.
+            @return <code>p</code> multiplied by <code>k</code>.
+        </member>
+        <member name="M:Org.BouncyCastle.Math.EC.Multiplier.WTauNafMultiplier.MultiplyWTnaf(Org.BouncyCastle.Math.EC.F2mPoint,Org.BouncyCastle.Math.EC.Abc.ZTauElement,Org.BouncyCastle.Math.EC.Multiplier.PreCompInfo,System.SByte,System.SByte)">
+            Multiplies a {@link org.bouncycastle.math.ec.F2mPoint F2mPoint}
+            by an element <code>&#955;</code> of <code><b>Z</b>[&#964;]</code> using
+            the <code>&#964;</code>-adic NAF (TNAF) method.
+            @param p The F2mPoint to multiply.
+            @param lambda The element <code>&#955;</code> of
+            <code><b>Z</b>[&#964;]</code> of which to compute the
+            <code>[&#964;]</code>-adic NAF.
+            @return <code>p</code> multiplied by <code>&#955;</code>.
+        </member>
+        <member name="M:Org.BouncyCastle.Math.EC.Multiplier.WTauNafMultiplier.MultiplyFromWTnaf(Org.BouncyCastle.Math.EC.F2mPoint,System.SByte[],Org.BouncyCastle.Math.EC.Multiplier.PreCompInfo)">
+            Multiplies a {@link org.bouncycastle.math.ec.F2mPoint F2mPoint}
+            by an element <code>&#955;</code> of <code><b>Z</b>[&#964;]</code>
+            using the window <code>&#964;</code>-adic NAF (TNAF) method, given the
+            WTNAF of <code>&#955;</code>.
+            @param p The F2mPoint to multiply.
+            @param u The the WTNAF of <code>&#955;</code>..
+            @return <code>&#955; * p</code>
+        </member>
+        <member name="T:Org.BouncyCastle.Math.EC.Multiplier.WTauNafPreCompInfo">
+            Class holding precomputation data for the WTNAF (Window
+            <code>&#964;</code>-adic Non-Adjacent Form) algorithm.
+        </member>
+        <member name="F:Org.BouncyCastle.Math.EC.Multiplier.WTauNafPreCompInfo.m_preComp">
+            Array holding the precomputed <code>F2mPoint</code>s used for the
+            WTNAF multiplication in <code>
+            {@link org.bouncycastle.math.ec.multiplier.WTauNafMultiplier.multiply()
+            WTauNafMultiplier.multiply()}</code>.
+        </member>
+        <member name="M:Org.BouncyCastle.Math.EC.Multiplier.ZSignedDigitL2RMultiplier.MultiplyPositive(Org.BouncyCastle.Math.EC.ECPoint,Org.BouncyCastle.Math.BigInteger)">
+            'Zeroless' Signed Digit Left-to-Right.
+        </member>
+        <member name="M:Org.BouncyCastle.Math.EC.Multiplier.ZSignedDigitR2LMultiplier.MultiplyPositive(Org.BouncyCastle.Math.EC.ECPoint,Org.BouncyCastle.Math.BigInteger)">
+            'Zeroless' Signed Digit Right-to-Left.
+        </member>
+        <member name="T:Org.BouncyCastle.Utilities.Arrays">
+            <summary> General array utilities.</summary>
+        </member>
+        <member name="M:Org.BouncyCastle.Utilities.Arrays.AreEqual(System.Byte[],System.Byte[])">
+            <summary>
+            Are two arrays equal.
+            </summary>
+            <param name="a">Left side.</param>
+            <param name="b">Right side.</param>
+            <returns>True if equal.</returns>
+        </member>
+        <member name="M:Org.BouncyCastle.Utilities.Arrays.ConstantTimeAreEqual(System.Byte[],System.Byte[])">
+            <summary>
+            A constant time equals comparison - does not terminate early if
+            test will fail.
+            </summary>
+            <param name="a">first array</param>
+            <param name="b">second array</param>
+            <returns>true if arrays equal, false otherwise.</returns>
+        </member>
+        <member name="M:Org.BouncyCastle.Utilities.Arrays.CopyOfRange(System.Byte[],System.Int32,System.Int32)">
+             Make a copy of a range of bytes from the passed in data array. The range can
+             extend beyond the end of the input array, in which case the return array will
+             be padded with zeroes.
+            
+             @param data the array from which the data is to be copied.
+             @param from the start index at which the copying should take place.
+             @param to the final index of the range (exclusive).
+            
+             @return a new byte array containing the range given.
+        </member>
+        <member name="T:Org.BouncyCastle.Utilities.BigIntegers">
+            BigInteger utilities.
+        </member>
+        <member name="M:Org.BouncyCastle.Utilities.BigIntegers.AsUnsignedByteArray(Org.BouncyCastle.Math.BigInteger)">
+             Return the passed in value as an unsigned byte array.
+            
+             @param value value to be converted.
+             @return a byte array without a leading zero byte if present in the signed encoding.
+        </member>
+        <member name="M:Org.BouncyCastle.Utilities.BigIntegers.AsUnsignedByteArray(System.Int32,Org.BouncyCastle.Math.BigInteger)">
+             Return the passed in value as an unsigned byte array of specified length, zero-extended as necessary.
+            
+             @param length desired length of result array.
+             @param n value to be converted.
+             @return a byte array of specified length, with leading zeroes as necessary given the size of n.
+        </member>
+        <member name="M:Org.BouncyCastle.Utilities.Date.DateTimeUtilities.DateTimeToUnixMs(System.DateTime)">
+            <summary>
+            Return the number of milliseconds since the Unix epoch (1 Jan., 1970 UTC) for a given DateTime value.
+            </summary>
+            <param name="dateTime">A UTC DateTime value not before epoch.</param>
+            <returns>Number of whole milliseconds after epoch.</returns>
+            <exception cref="T:System.ArgumentException">'dateTime' is before epoch.</exception>
+        </member>
+        <member name="M:Org.BouncyCastle.Utilities.Date.DateTimeUtilities.UnixMsToDateTime(System.Int64)">
+            <summary>
+            Create a DateTime value from the number of milliseconds since the Unix epoch (1 Jan., 1970 UTC).
+            </summary>
+            <param name="unixMs">Number of milliseconds since the epoch.</param>
+            <returns>A UTC DateTime value</returns>
+        </member>
+        <member name="M:Org.BouncyCastle.Utilities.Date.DateTimeUtilities.CurrentUnixMs">
+            <summary>
+            Return the current number of milliseconds since the Unix epoch (1 Jan., 1970 UTC).
+            </summary>
+        </member>
+        <member name="M:Org.BouncyCastle.Utilities.Encoders.Base64.Encode(System.Byte[])">
+             encode the input data producing a base 64 encoded byte array.
+            
+             @return a byte array containing the base 64 encoded data.
+        </member>
+        <member name="M:Org.BouncyCastle.Utilities.Encoders.Base64.Encode(System.Byte[],System.IO.Stream)">
+             Encode the byte data to base 64 writing it to the given output stream.
+            
+             @return the number of bytes produced.
+        </member>
+        <member name="M:Org.BouncyCastle.Utilities.Encoders.Base64.Encode(System.Byte[],System.Int32,System.Int32,System.IO.Stream)">
+             Encode the byte data to base 64 writing it to the given output stream.
+            
+             @return the number of bytes produced.
+        </member>
+        <member name="M:Org.BouncyCastle.Utilities.Encoders.Base64.Decode(System.Byte[])">
+             decode the base 64 encoded input data. It is assumed the input data is valid.
+            
+             @return a byte array representing the decoded data.
+        </member>
+        <member name="M:Org.BouncyCastle.Utilities.Encoders.Base64.Decode(System.String)">
+             decode the base 64 encoded string data - whitespace will be ignored.
+            
+             @return a byte array representing the decoded data.
+        </member>
+        <member name="M:Org.BouncyCastle.Utilities.Encoders.Base64.Decode(System.String,System.IO.Stream)">
+             decode the base 64 encoded string data writing it to the given output stream,
+             whitespace characters will be ignored.
+            
+             @return the number of bytes produced.
+        </member>
+        <member name="T:Org.BouncyCastle.Utilities.Encoders.IEncoder">
+            Encode and decode byte arrays (typically from binary to 7-bit ASCII
+            encodings).
+        </member>
+        <member name="M:Org.BouncyCastle.Utilities.Encoders.Base64Encoder.Encode(System.Byte[],System.Int32,System.Int32,System.IO.Stream)">
+             encode the input data producing a base 64 output stream.
+            
+             @return the number of bytes produced.
+        </member>
+        <member name="M:Org.BouncyCastle.Utilities.Encoders.Base64Encoder.Decode(System.Byte[],System.Int32,System.Int32,System.IO.Stream)">
+             decode the base 64 encoded byte data writing it to the given output stream,
+             whitespace characters will be ignored.
+            
+             @return the number of bytes produced.
+        </member>
+        <member name="M:Org.BouncyCastle.Utilities.Encoders.Base64Encoder.DecodeString(System.String,System.IO.Stream)">
+             decode the base 64 encoded string data writing it to the given output stream,
+             whitespace characters will be ignored.
+            
+             @return the number of bytes produced.
+        </member>
+        <member name="T:Org.BouncyCastle.Utilities.Encoders.BufferedDecoder">
+            <summary>
+             A buffering class to allow translation from one format to another to
+                be done in discrete chunks.
+            </summary>
+        </member>
+        <member name="M:Org.BouncyCastle.Utilities.Encoders.BufferedDecoder.#ctor(Org.BouncyCastle.Utilities.Encoders.ITranslator,System.Int32)">
+            <summary>
+            Create a buffered Decoder.
+            </summary>
+            <param name="translator">The translater to use.</param>
+            <param name="bufferSize">The size of the buffer.</param>
+        </member>
+        <member name="M:Org.BouncyCastle.Utilities.Encoders.BufferedDecoder.ProcessByte(System.Byte,System.Byte[],System.Int32)">
+            <summary>
+            Process one byte of data.
+            </summary>
+            <param name="input">Data in.</param>
+            <param name="output">Byte array for the output.</param>
+            <param name="outOff">The offset in the output byte array to start writing from.</param>
+            <returns>The amount of output bytes.</returns>
+        </member>
+        <member name="M:Org.BouncyCastle.Utilities.Encoders.BufferedDecoder.ProcessBytes(System.Byte[],System.Int32,System.Int32,System.Byte[],System.Int32)">
+            <summary>
+            Process data from a byte array.
+            </summary>
+            <param name="input">The input data.</param>
+            <param name="inOff">Start position within input data array.</param>
+            <param name="len">Amount of data to process from input data array.</param>
+            <param name="outBytes">Array to store output.</param>
+            <param name="outOff">Position in output array to start writing from.</param>
+            <returns>The amount of output bytes.</returns>
+        </member>
+        <member name="T:Org.BouncyCastle.Utilities.Encoders.BufferedEncoder">
+            <summary>
+            A class that allows encoding of data using a specific encoder to be processed in chunks.
+            </summary>
+        </member>
+        <member name="M:Org.BouncyCastle.Utilities.Encoders.BufferedEncoder.#ctor(Org.BouncyCastle.Utilities.Encoders.ITranslator,System.Int32)">
+            <summary>
+            Create.
+            </summary>
+            <param name="translator">The translator to use.</param>
+            <param name="bufferSize">Size of the chunks.</param>
+        </member>
+        <member name="M:Org.BouncyCastle.Utilities.Encoders.BufferedEncoder.ProcessByte(System.Byte,System.Byte[],System.Int32)">
+            <summary>
+            Process one byte of data.
+            </summary>
+            <param name="input">The byte.</param>
+            <param name="outBytes">An array to store output in.</param>
+            <param name="outOff">Offset within output array to start writing from.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Org.BouncyCastle.Utilities.Encoders.BufferedEncoder.ProcessBytes(System.Byte[],System.Int32,System.Int32,System.Byte[],System.Int32)">
+            <summary>
+            Process data from a byte array.
+            </summary>
+            <param name="input">Input data Byte array containing data to be processed.</param>
+            <param name="inOff">Start position within input data array.</param>
+            <param name="len">Amount of input data to be processed.</param>
+            <param name="outBytes">Output data array.</param>
+            <param name="outOff">Offset within output data array to start writing to.</param>
+            <returns>The amount of data written.</returns>
+        </member>
+        <member name="T:Org.BouncyCastle.Utilities.Encoders.Hex">
+            <summary>
+            Class to decode and encode Hex.
+            </summary>
+        </member>
+        <member name="M:Org.BouncyCastle.Utilities.Encoders.Hex.Encode(System.Byte[])">
+             encode the input data producing a Hex encoded byte array.
+            
+             @return a byte array containing the Hex encoded data.
+        </member>
+        <member name="M:Org.BouncyCastle.Utilities.Encoders.Hex.Encode(System.Byte[],System.Int32,System.Int32)">
+             encode the input data producing a Hex encoded byte array.
+            
+             @return a byte array containing the Hex encoded data.
+        </member>
+        <member name="M:Org.BouncyCastle.Utilities.Encoders.Hex.Encode(System.Byte[],System.IO.Stream)">
+             Hex encode the byte data writing it to the given output stream.
+            
+             @return the number of bytes produced.
+        </member>
+        <member name="M:Org.BouncyCastle.Utilities.Encoders.Hex.Encode(System.Byte[],System.Int32,System.Int32,System.IO.Stream)">
+             Hex encode the byte data writing it to the given output stream.
+            
+             @return the number of bytes produced.
+        </member>
+        <member name="M:Org.BouncyCastle.Utilities.Encoders.Hex.Decode(System.Byte[])">
+             decode the Hex encoded input data. It is assumed the input data is valid.
+            
+             @return a byte array representing the decoded data.
+        </member>
+        <member name="M:Org.BouncyCastle.Utilities.Encoders.Hex.Decode(System.String)">
+             decode the Hex encoded string data - whitespace will be ignored.
+            
+             @return a byte array representing the decoded data.
+        </member>
+        <member name="M:Org.BouncyCastle.Utilities.Encoders.Hex.Decode(System.String,System.IO.Stream)">
+             decode the Hex encoded string data writing it to the given output stream,
+             whitespace characters will be ignored.
+            
+             @return the number of bytes produced.
+        </member>
+        <member name="M:Org.BouncyCastle.Utilities.Encoders.HexEncoder.Encode(System.Byte[],System.Int32,System.Int32,System.IO.Stream)">
+             encode the input data producing a Hex output stream.
+            
+             @return the number of bytes produced.
+        </member>
+        <member name="M:Org.BouncyCastle.Utilities.Encoders.HexEncoder.Decode(System.Byte[],System.Int32,System.Int32,System.IO.Stream)">
+             decode the Hex encoded byte data writing it to the given output stream,
+             whitespace characters will be ignored.
+            
+             @return the number of bytes produced.
+        </member>
+        <member name="M:Org.BouncyCastle.Utilities.Encoders.HexEncoder.DecodeString(System.String,System.IO.Stream)">
+             decode the Hex encoded string data writing it to the given output stream,
+             whitespace characters will be ignored.
+            
+             @return the number of bytes produced.
+        </member>
+        <member name="T:Org.BouncyCastle.Utilities.Encoders.HexTranslator">
+            <summary>
+            A hex translator.
+            </summary>
+        </member>
+        <member name="T:Org.BouncyCastle.Utilities.Encoders.ITranslator">
+            <summary>
+            Translator interface.
+            </summary>
+        </member>
+        <member name="M:Org.BouncyCastle.Utilities.Encoders.HexTranslator.GetEncodedBlockSize">
+            <summary>
+            Return encoded block size.
+            </summary>
+            <returns>2</returns>
+        </member>
+        <member name="M:Org.BouncyCastle.Utilities.Encoders.HexTranslator.Encode(System.Byte[],System.Int32,System.Int32,System.Byte[],System.Int32)">
+            <summary>
+            Encode some data.
+            </summary>
+            <param name="input">Input data array.</param>
+            <param name="inOff">Start position within input data array.</param>
+            <param name="length">The amount of data to process.</param>
+            <param name="outBytes">The output data array.</param>
+            <param name="outOff">The offset within the output data array to start writing from.</param>
+            <returns>Amount of data encoded.</returns>
+        </member>
+        <member name="M:Org.BouncyCastle.Utilities.Encoders.HexTranslator.GetDecodedBlockSize">
+            <summary>
+            Returns the decoded block size.
+            </summary>
+            <returns>1</returns>
+        </member>
+        <member name="M:Org.BouncyCastle.Utilities.Encoders.HexTranslator.Decode(System.Byte[],System.Int32,System.Int32,System.Byte[],System.Int32)">
+            <summary>
+            Decode data from a byte array.
+            </summary>
+            <param name="input">The input data array.</param>
+            <param name="inOff">Start position within input data array.</param>
+            <param name="length">The amounty of data to process.</param>
+            <param name="outBytes">The output data array.</param>
+            <param name="outOff">The position within the output data array to start writing from.</param>
+            <returns>The amount of data written.</returns>
+        </member>
+        <member name="T:Org.BouncyCastle.Utilities.Encoders.UrlBase64">
+            Convert binary data to and from UrlBase64 encoding.  This is identical to
+            Base64 encoding, except that the padding character is "." and the other 
+            non-alphanumeric characters are "-" and "_" instead of "+" and "/".
+            <p>
+            The purpose of UrlBase64 encoding is to provide a compact encoding of binary
+            data that is safe for use as an URL parameter. Base64 encoding does not
+            produce encoded values that are safe for use in URLs, since "/" can be 
+            interpreted as a path delimiter; "+" is the encoded form of a space; and
+            "=" is used to separate a name from the corresponding value in an URL 
+            parameter.
+            </p>
+        </member>
+        <member name="M:Org.BouncyCastle.Utilities.Encoders.UrlBase64.Encode(System.Byte[])">
+             Encode the input data producing a URL safe base 64 encoded byte array.
+            
+             @return a byte array containing the URL safe base 64 encoded data.
+        </member>
+        <member name="M:Org.BouncyCastle.Utilities.Encoders.UrlBase64.Encode(System.Byte[],System.IO.Stream)">
+             Encode the byte data writing it to the given output stream.
+            
+             @return the number of bytes produced.
+        </member>
+        <member name="M:Org.BouncyCastle.Utilities.Encoders.UrlBase64.Decode(System.Byte[])">
+             Decode the URL safe base 64 encoded input data - white space will be ignored.
+            
+             @return a byte array representing the decoded data.
+        </member>
+        <member name="M:Org.BouncyCastle.Utilities.Encoders.UrlBase64.Decode(System.Byte[],System.IO.Stream)">
+             decode the URL safe base 64 encoded byte data writing it to the given output stream,
+             whitespace characters will be ignored.
+            
+             @return the number of bytes produced.
+        </member>
+        <member name="M:Org.BouncyCastle.Utilities.Encoders.UrlBase64.Decode(System.String)">
+             decode the URL safe base 64 encoded string data - whitespace will be ignored.
+            
+             @return a byte array representing the decoded data.
+        </member>
+        <member name="M:Org.BouncyCastle.Utilities.Encoders.UrlBase64.Decode(System.String,System.IO.Stream)">
+             Decode the URL safe base 64 encoded string data writing it to the given output stream,
+             whitespace characters will be ignored.
+            
+             @return the number of bytes produced.
+        </member>
+        <member name="T:Org.BouncyCastle.Utilities.Encoders.UrlBase64Encoder">
+            Convert binary data to and from UrlBase64 encoding.  This is identical to
+            Base64 encoding, except that the padding character is "." and the other 
+            non-alphanumeric characters are "-" and "_" instead of "+" and "/".
+            <p>
+            The purpose of UrlBase64 encoding is to provide a compact encoding of binary
+            data that is safe for use as an URL parameter. Base64 encoding does not
+            produce encoded values that are safe for use in URLs, since "/" can be 
+            interpreted as a path delimiter; "+" is the encoded form of a space; and
+            "=" is used to separate a name from the corresponding value in an URL 
+            parameter.
+            </p>
+        </member>
+        <member name="M:Org.BouncyCastle.Utilities.IO.Pem.PemObjectGenerator.Generate">
+            <returns>
+            A <see cref="T:Org.BouncyCastle.Utilities.IO.Pem.PemObject"/>
+            </returns>
+            <exception cref="T:Org.BouncyCastle.Utilities.IO.Pem.PemGenerationException"></exception>
+        </member>
+        <member name="M:Org.BouncyCastle.Utilities.IO.Pem.PemObjectParser.ParseObject(Org.BouncyCastle.Utilities.IO.Pem.PemObject)">
+            <param name="obj">
+            A <see cref="T:Org.BouncyCastle.Utilities.IO.Pem.PemObject"/>
+            </param>
+            <returns>
+            A <see cref="T:System.Object"/>
+            </returns>
+            <exception cref="T:System.IO.IOException"></exception>
+        </member>
+        <member name="M:Org.BouncyCastle.Utilities.IO.Pem.PemReader.ReadPemObject">
+            <returns>
+            A <see cref="T:Org.BouncyCastle.Utilities.IO.Pem.PemObject"/>
+            </returns>
+            <exception cref="T:System.IO.IOException"></exception>
+        </member>
+        <member name="T:Org.BouncyCastle.Utilities.IO.Pem.PemWriter">
+            A generic PEM writer, based on RFC 1421
+        </member>
+        <member name="M:Org.BouncyCastle.Utilities.IO.Pem.PemWriter.#ctor(System.IO.TextWriter)">
+             Base constructor.
+            
+             @param out output stream to use.
+        </member>
+        <member name="M:Org.BouncyCastle.Utilities.IO.Pem.PemWriter.GetOutputSize(Org.BouncyCastle.Utilities.IO.Pem.PemObject)">
+             Return the number of bytes or characters required to contain the
+             passed in object if it is PEM encoded.
+            
+             @param obj pem object to be output
+             @return an estimate of the number of bytes
+        </member>
+        <member name="M:Org.BouncyCastle.Utilities.IO.Streams.PipeAllLimited(System.IO.Stream,System.Int64,System.IO.Stream)">
+            <summary>
+            Pipe all bytes from <c>inStr</c> to <c>outStr</c>, throwing <c>StreamFlowException</c> if greater
+            than <c>limit</c> bytes in <c>inStr</c>.
+            </summary>
+            <param name="inStr">
+            A <see cref="T:System.IO.Stream"/>
+            </param>
+            <param name="limit">
+            A <see cref="T:System.Int64"/>
+            </param>
+            <param name="outStr">
+            A <see cref="T:System.IO.Stream"/>
+            </param>
+            <returns>The number of bytes actually transferred, if not greater than <c>limit</c></returns>
+            <exception cref="T:System.IO.IOException"></exception>
+        </member>
+        <member name="M:Org.BouncyCastle.Utilities.Net.IPAddress.IsValid(System.String)">
+             Validate the given IPv4 or IPv6 address.
+            
+             @param address the IP address as a string.
+            
+             @return true if a valid address, false otherwise
+        </member>
+        <member name="M:Org.BouncyCastle.Utilities.Net.IPAddress.IsValidWithNetMask(System.String)">
+             Validate the given IPv4 or IPv6 address and netmask.
+            
+             @param address the IP address as a string.
+            
+             @return true if a valid address with netmask, false otherwise
+        </member>
+        <member name="M:Org.BouncyCastle.Utilities.Net.IPAddress.IsValidIPv4(System.String)">
+             Validate the given IPv4 address.
+             
+             @param address the IP address as a string.
+            
+             @return true if a valid IPv4 address, false otherwise
+        </member>
+        <member name="M:Org.BouncyCastle.Utilities.Net.IPAddress.IsValidIPv6(System.String)">
+             Validate the given IPv6 address.
+            
+             @param address the IP address as a string.
+            
+             @return true if a valid IPv4 address, false otherwise
+        </member>
+        <member name="T:Org.BouncyCastle.Utilities.Strings">
+            <summary> General string utilities.</summary>
+        </member>
+    </members>
+</doc>
